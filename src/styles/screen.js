@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { breakpoints } from '../configs';
+import { breakpoints } from './variables';
 
 const screen = (minOrMax, breakpoint) => {
   if (minOrMax !== 'min' && minOrMax !== 'max') {

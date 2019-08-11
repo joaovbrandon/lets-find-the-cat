@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles';
+import { colors, fontSizes } from '../../styles';
 
 export const Container = styled.footer`
   text-align: center;
@@ -8,6 +8,7 @@ export const Container = styled.footer`
 `;
 
 export const Copyright = styled.p`
+  font-size: ${fontSizes.small};
   font-weight: bold;
 `;
 
