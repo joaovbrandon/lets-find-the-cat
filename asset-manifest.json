@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/lets-find-the-cat/static/js/main.3a8623b7.chunk.js",
+    "main.js.map": "/lets-find-the-cat/static/js/main.3a8623b7.chunk.js.map",
+    "runtime~main.js": "/lets-find-the-cat/static/js/runtime~main.3249bd83.js",
+    "runtime~main.js.map": "/lets-find-the-cat/static/js/runtime~main.3249bd83.js.map",
+    "static/js/2.2472d7d5.chunk.js": "/lets-find-the-cat/static/js/2.2472d7d5.chunk.js",
+    "static/js/2.2472d7d5.chunk.js.map": "/lets-find-the-cat/static/js/2.2472d7d5.chunk.js.map",
+    "index.html": "/lets-find-the-cat/index.html",
+    "precache-manifest.1d508cfe24796d5ae3e3a4ad42b2b948.js": "/lets-find-the-cat/precache-manifest.1d508cfe24796d5ae3e3a4ad42b2b948.js",
+    "service-worker.js": "/lets-find-the-cat/service-worker.js"
+  }
+}
