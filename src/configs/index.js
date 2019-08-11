@@ -7,3 +7,19 @@ export const breakpoints = {
   lg: '1200px',
   xl: '1600px',
 };
+
+export const socialMediaUrls = {
+  /*
+    If need hide one social media, just comment or remove the line
+
+    Pre-configured Social Medias:
+    - facebook
+    - instagram
+    - youtube
+    - twitter
+  */
+  facebook: 'https://www.facebook.com/',
+  instagram: 'https://www.instagram.com/',
+  youtube: 'https://www.youtube.com/',
+  twitter: 'https://twitter.com/',
+};
