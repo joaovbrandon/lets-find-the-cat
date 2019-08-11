@@ -1,15 +1,26 @@
 import styled from 'styled-components';
-import { colors } from '../../styles';
+import { colors, screen, fontSizes } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: ${colors.black};
-  line-height: 1.8;
+  text-align: center;
+  color: ${colors.main};
+  padding: 30px 0;
+
+  svg {
+    max-width: 600px;
+    margin: 40px 0;
+
+    ${screen('max', 'sm')`
+      max-width: 50%;
+    `}
+  }
 
   a {
-    color: ${colors.darkGrey};
+    font-size: ${fontSizes.medium};
+    color: ${colors.main};
   }
 `;
