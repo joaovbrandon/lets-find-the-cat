@@ -1,17 +1,21 @@
 export const breakpoints = {
-  xs: '480px',
-  sm: '768px',
-  md: '992px',
-  lg: '1200px',
-  xl: '1600px',
+  xs: '480',
+  sm: '768',
+  md: '992',
+  lg: '1200',
+  xl: '1600',
 };
 
 export const fontSizes = {
-  tiny: '.75rem',
-  small: '1rem',
-  normal: '1.25rem',
-  medium: '1.5rem',
-  large: '1.75rem',
-  big: '2rem',
+  gigantic: '3rem',
+  enormous: '2.75rem',
   huge: '2.5rem',
+  bigger: '2rem',
+  big: '1.75rem',
+  medium: '1.5rem',
+  regular: '1.25rem',
+  small: '1rem',
+  smaller: '.75rem',
+  tiny: '.5rem',
+  tiniest: '.25rem',
 };

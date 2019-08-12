@@ -3,7 +3,7 @@ import { colors, fontSizes } from '../../styles';
 
 export const Container = styled.footer`
   text-align: center;
-  color: ${colors.main};
+  color: ${colors.primary};
   padding: 20px;
 `;
 
@@ -17,11 +17,11 @@ export const SocialMedia = styled.div`
 
   a {
     margin: 0 10px;
-    color: ${colors.main};
+    color: ${colors.primary};
     transition: .5s;
 
     &:hover {
-      color: ${colors.mainHover};
+      color: ${colors.secondary};
     }
   }
 `;

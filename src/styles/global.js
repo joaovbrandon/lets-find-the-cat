@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: 0;
-    font-size: ${fontSizes.normal};
+    font-size: ${fontSizes.regular};
   }
 
   body {
@@ -26,24 +26,24 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: ${fontSizes.normal};
+    font-size: ${fontSizes.regular};
   }
 
   h1 { font-size: ${fontSizes.huge}; }
 
-  h2 { font-size: ${fontSizes.big}; }
+  h2 { font-size: ${fontSizes.bigger}; }
 
-  h3 { font-size: ${fontSizes.large}; }
+  h3 { font-size: ${fontSizes.big}; }
 
   h4 { font-size: ${fontSizes.medium}; }
 
-  h5 { font-size: ${fontSizes.normal}; }
+  h5 { font-size: ${fontSizes.regular}; }
 
   h6 { font-size: ${fontSizes.small}; }
 
-  p { font-size: ${fontSizes.normal}; }
+  p { font-size: ${fontSizes.regular}; }
 
-  a { font-size: ${fontSizes.normal}; }
+  a { font-size: ${fontSizes.regular}; }
 `;
 
 export default GlobalStyle;
