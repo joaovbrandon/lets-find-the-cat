@@ -1,5 +1,10 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
+export const CACHE = {
+  PREFIX: IS_DEV ? 'LetsFindTheCat@dev@' : 'LetsFindTheCat@',
+  DEFAULT_DURATION: 86400000, // 24h
+};
+
 export const socialMediaUrls = {
   /*
     If need hide one social media, just comment or remove the line

@@ -1,17 +1,50 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { withRouter, Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Creators as AuthActions } from '../../store/ducks/auth';
+import { Creators as LoaderActions } from '../../store/ducks/loader';
 import { useMetrics } from '../../hooks';
 import {
-  Container, Logo, LoginFormContainer, OpenLoginModalBtn,
+  Container, Logo, LoginFormContainer,
 } from './styles';
+import Button from '../Button';
 import LoginForm from '../LoginForm';
 import Modal from '../Modal';
 
-export default function Header() {
+function Header({
+  user, startLoading, stopLoading, logout, history,
+}) {
   const metrics = useMetrics();
   const [modalOpened, setModalOpened] = useState(false);
+
+  const handleLogout = async () => {
+    startLoading('Logging out...');
+
+    /*
+      Timeout for evaluation purposes only
+      (for the loading be visible if the action was too fast)
+    */
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    await logout();
+    await history.push('/');
+    stopLoading();
+  };
+
+  const renderLoggedContent = () => (
+    <>
+      <Button btnStyle={2} type="button" onClick={handleLogout}>
+        Log Out
+        {' '}
+        <FontAwesomeIcon icon={faSignOutAlt} size="sm" />
+      </Button>
+    </>
+  );
 
   const renderLoginForm = () => (
     metrics.isXL || metrics.isLG || metrics.isMD
@@ -25,11 +58,11 @@ export default function Header() {
       )
       : (
         <>
-          <OpenLoginModalBtn type="button" onClick={() => setModalOpened(true)}>
+          <Button btnStyle={2} type="button" onClick={() => setModalOpened(true)}>
             Log In
             {' '}
             <FontAwesomeIcon icon={faSignInAlt} size="sm" />
-          </OpenLoginModalBtn>
+          </Button>
 
           <Modal
             opened={modalOpened}
@@ -48,7 +81,44 @@ export default function Header() {
       <Link to="/">
         <Logo title="Let's find the cat" />
       </Link>
-      {renderLoginForm()}
+      {user ? renderLoggedContent() : renderLoginForm()}
     </Container>
   );
 }
+
+Header.defaultProps = {
+  user: null,
+};
+
+Header.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    login: PropTypes.string,
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+    amountDonated: PropTypes.number,
+  }),
+  startLoading: PropTypes.func.isRequired,
+  stopLoading: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  ...AuthActions,
+  ...LoaderActions,
+}, dispatch);
+
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(Header);

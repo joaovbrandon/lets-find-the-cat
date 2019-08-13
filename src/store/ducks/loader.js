@@ -12,9 +12,9 @@ const INITIAL_STATE = {
   isLoading: false,
 };
 
-export const startLoading = (state, action) => ({
+export const startLoading = (state, { message }) => ({
   isLoading: true,
-  message: action.message,
+  message,
 });
 
 export const stopLoading = () => INITIAL_STATE;

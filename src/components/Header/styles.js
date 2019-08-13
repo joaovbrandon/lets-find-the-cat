@@ -37,22 +37,3 @@ export const LoginFormContainer = styled.div`
     margin-left: 5px;
   }
 `;
-
-export const OpenLoginModalBtn = styled.button`
-  margin-left: 5px;
-  padding: 0 10px;
-  height: 30px;
-  border-radius: 8px;
-  background: transparent;
-  border: 2px solid ${colors.secondary};
-  color: ${colors.secondary};
-  font-size: ${fontSizes.small};
-  font-weight: bold;
-  cursor: pointer;
-  transition: .5s;
-
-  &:hover {
-    border: 2px solid ${colors.primary};
-    color: ${colors.primary};
-  }
-`;
