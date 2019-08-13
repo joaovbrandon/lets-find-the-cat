@@ -12,7 +12,7 @@ const screen = (minOrMax, breakpoint) => {
 
   return Object.keys(breakpoints).reduce((accumulator, size) => {
     accumulator[size] = (...args) => css`
-      @media (${minOrMax}-width: ${breakpoints[size]}px) {
+      @media (${minOrMax}-width: calc(${breakpoints[size]}px - 1px)) {
         ${css(...args)};
       }
     `;

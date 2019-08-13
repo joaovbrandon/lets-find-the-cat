@@ -3,24 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter, Link } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Creators as AuthActions } from '../../store/ducks/auth';
 import { Creators as LoaderActions } from '../../store/ducks/loader';
 import { useMetrics } from '../../hooks';
-import {
-  Container, Logo, LoginFormContainer,
-} from './styles';
 import Button from '../Button';
 import LoginForm from '../LoginForm';
 import Modal from '../Modal';
+import {
+  Container,
+  Logo,
+  LoginFormContainer,
+  UserContainer,
+  UserAvatar,
+  UserInfos,
+  UserName,
+  MenuItem,
+  MobileMenuOpacity,
+} from './styles';
 
 function Header({
   user, startLoading, stopLoading, logout, history,
 }) {
   const metrics = useMetrics();
   const [modalOpened, setModalOpened] = useState(false);
+  const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
 
   const handleLogout = async () => {
     startLoading('Logging out...');
@@ -36,13 +44,23 @@ function Header({
     stopLoading();
   };
 
+  const handleMobileMenu = () => {
+    if (!metrics.isXS) return;
+    setMobileMenuOpened(!mobileMenuOpened);
+  };
+
   const renderLoggedContent = () => (
     <>
-      <Button btnStyle={2} type="button" onClick={handleLogout}>
-        Log Out
-        {' '}
-        <FontAwesomeIcon icon={faSignOutAlt} size="sm" />
-      </Button>
+      <UserContainer onClick={handleMobileMenu}>
+        <UserAvatar src={user.avatar_url} alt={user.name} />
+        {(metrics.isXS && mobileMenuOpened) && <MobileMenuOpacity onClick={handleMobileMenu} />}
+        <UserInfos mobileMenuOpened={mobileMenuOpened}>
+          <UserName>{user.name}</UserName>
+          <MenuItem type="button">My Donations</MenuItem>
+          <MenuItem type="button" onClick={handleLogout}>Log Out</MenuItem>
+        </UserInfos>
+        {metrics.isXS && <FontAwesomeIcon icon={faEllipsisV} size="sm" />}
+      </UserContainer>
     </>
   );
 
