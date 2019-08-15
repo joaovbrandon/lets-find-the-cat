@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontSizes, screen } from '../../styles';
+import { colors, fontSizes } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px;
+  padding: 10px;
   visibility: ${({ opened }) => (opened ? 'visible' : 'hidden')};
   opacity: ${({ opened }) => (opened ? '1' : '0')};
   transition: visibility .4s, opacity .2s linear;
@@ -31,11 +31,11 @@ export const Content = styled.div`
   background: ${colors.background};
   border-radius: 10px;
   position: relative;
-  padding: 50px;
-
-  ${screen('max', 'sm')`
-    padding: 40px 20px;
-  `}
+  padding: 0 20px 20px 20px;
+  max-width: 80%;
+  max-height: 80%;
+  word-break: break-word;
+  overflow: scroll;
 
   h2 {
     color: ${colors.primary};
@@ -50,9 +50,9 @@ export const Content = styled.div`
 
 export const Close = styled.span`
   color: ${colors.primary};
-  position: absolute;
+  position: sticky;
   top: 0;
-  right: 15px;
+  margin-right: -100%;
   cursor: pointer;
   font-weight: bold;
   font-size: ${fontSizes.bigger};

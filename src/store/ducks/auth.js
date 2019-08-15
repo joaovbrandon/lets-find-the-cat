@@ -7,6 +7,7 @@ export const { Types, Creators } = createActions(
     loginSuccess: ['user'],
     loginFailure: null,
     logout: ['history'],
+    logoutSuccess: null,
   },
   { prefix: 'auth/' },
 );
@@ -35,7 +36,9 @@ export const loginFailure = () => ({
   error: true,
 });
 
-export const logout = () => ({
+export const logout = (state = INITIAL_STATE) => state;
+
+export const logoutSuccess = () => ({
   ...INITIAL_STATE,
   user: null,
 });
@@ -45,4 +48,5 @@ export default createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: loginSuccess,
   [Types.LOGIN_FAILURE]: loginFailure,
   [Types.LOGOUT]: logout,
+  [Types.LOGOUT_SUCCESS]: logoutSuccess,
 });

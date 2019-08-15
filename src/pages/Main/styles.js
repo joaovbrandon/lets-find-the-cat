@@ -8,5 +8,5 @@ export const Container = styled.section`
   flex-direction: column;
   text-align: center;
   color: ${colors.primary};
-  padding: 30px 0;
+  padding: 30px 40px;
 `;

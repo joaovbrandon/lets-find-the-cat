@@ -10,6 +10,7 @@ import { useMetrics } from '../../hooks';
 import Button from '../Button';
 import LoginForm from '../LoginForm';
 import Modal from '../Modal';
+import MyDonations from '../MyDonations';
 import {
   Container,
   Logo,
@@ -56,7 +57,7 @@ function Header({ user, logout, history }) {
             setOpened={setModalMyDonationsOpened}
             title="My Donations"
           >
-            <p>Donations</p>
+            <MyDonations canGetPetsList={modalMyDonationsOpened} />
           </Modal>
         )
       }

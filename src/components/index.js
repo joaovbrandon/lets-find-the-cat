@@ -5,6 +5,9 @@ import Input from './Input';
 import Loader from './Loader';
 import LoginForm from './LoginForm';
 import Modal from './Modal';
+import MyDonations from './MyDonations';
+import PetItem from './PetItem';
+import PetsList from './PetsList';
 
 export {
   Button,
@@ -14,4 +17,7 @@ export {
   Loader,
   LoginForm,
   Modal,
+  MyDonations,
+  PetItem,
+  PetsList,
 };

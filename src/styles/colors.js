@@ -6,6 +6,7 @@ const colors = {
   // General
   background: '#FFF',
   backgroundOpacity: 'rgba(181, 65, 66, .6)',
+  divisor: 'rgba(181, 65, 66, .1)',
   primary: '#B54142',
   secondary: '#C76061',
   tertiary: '#C54142',

@@ -1,7 +1,8 @@
-import { call, put } from 'redux-saga/effects';
+import { all, call, put } from 'redux-saga/effects';
 import { CacheService, HelperService } from '../../services';
 import { Creators as LoaderActions } from '../ducks/loader';
 import { Creators as DonationsActions } from '../ducks/donations';
+import { Creators as PetsActions } from '../ducks/pets';
 
 export function* getUserDonations({ userId }) {
   if (!userId) {
@@ -12,46 +13,61 @@ export function* getUserDonations({ userId }) {
     Here would be the API request...
     But for now, we just mock the JSON.
   */
-  const userDonations = [
+  const API_RESULT = [
     {
-      _id: HelperService.mockId(),
-      animalId: '5d5426f6209627a739f190e9',
+      id: HelperService.mockId(),
+      petId: '5d551ace26c591e861e402c3',
       userId,
       amountDonated: 10.00,
     },
     {
-      _id: HelperService.mockId(),
-      animalId: '5d5426f6411981e9607308c2',
+      id: HelperService.mockId(),
+      petId: '5d551ace0024492c28172987',
       userId,
       amountDonated: 5.00,
     },
     {
-      _id: HelperService.mockId(),
-      animalId: '5d5426f62a8a29ec23fbed31',
+      id: HelperService.mockId(),
+      petId: '5d551ace9f07485197b863bb',
       userId,
       amountDonated: 5.50,
     },
     {
-      _id: HelperService.mockId(),
-      animalId: '5d5426f6fe4a36d70c2f895b',
+      id: HelperService.mockId(),
+      petId: '5d551ace2f8b5217de080f66',
       userId,
       amountDonated: 3.00,
     },
     {
-      _id: HelperService.mockId(),
-      animalId: '5d5426f67d41ed750e2be729',
+      id: HelperService.mockId(),
+      petId: '5d551ace011392f9f9b7bc9d',
       userId,
       amountDonated: 4.00,
     },
   ];
 
-  yield call(CacheService.set, 'USER_DONATIONS', userDonations);
-  yield put(DonationsActions.updateUserDonations(userDonations));
+  const userDonations = yield API_RESULT.map(donation => ({
+    ...donation,
+    amountDonatedUnformatted: donation.amountDonated,
+    amountDonated: HelperService.currencyFormat(donation.amountDonated),
+  }));
+
+  const totalAmountDonatedUnformatted = yield API_RESULT.reduce(
+    (accumulator, donation) => accumulator + donation.amountDonated, 0,
+  );
+
+  const totalAmountDonated = yield HelperService.currencyFormat(totalAmountDonatedUnformatted);
+
+  yield all([
+    call(CacheService.set, 'USER_DONATIONS', userDonations),
+    call(CacheService.set, 'USER_TOTAL_AMOUNT_DONATED', totalAmountDonated),
+    put(DonationsActions.updateUserDonations(userDonations, totalAmountDonated)),
+  ]);
 }
 
-export function* addUserDonation({ animalId, userId, amountDonated }) {
-  if (!animalId || !userId || !amountDonated) {
-    throw new Error("You should pass the 'animalId', 'userId' and 'amountDonated' to donations/ADD_USER_DONATION!");
+export function* addUserDonation({ petId, userId, amountDonated }) {
+  if (!petId || !userId || !amountDonated) {
+    throw new Error("You should pass the 'petId', 'userId' and 'amountDonated' to donations/ADD_USER_DONATION!");
   }
 
   yield put(LoaderActions.startLoading('Donating...'));
@@ -62,12 +78,23 @@ export function* addUserDonation({ animalId, userId, amountDonated }) {
   */
   const userDonations = yield call(CacheService.get, 'USER_DONATIONS');
 
-  userDonations.push({
-    _id: HelperService.mockId(),
-    animalId,
+  yield userDonations.push({
+    id: HelperService.mockId(),
+    petId,
     userId,
-    amountDonated,
+    amountDonatedUnformatted: amountDonated,
+    amountDonated: HelperService.currencyFormat(amountDonated),
   });
+
+  const totalAmountDonatedUnformatted = yield userDonations.reduce(
+    (accumulator, donation) => accumulator + donation.amountDonatedUnformatted, 0,
+  );
+
+  console.log('########## totalAmountDonatedUnformatted => ', totalAmountDonatedUnformatted);
+
+  const totalAmountDonated = yield HelperService.currencyFormat(totalAmountDonatedUnformatted);
+
+  console.log('########## totalAmountDonated => ', totalAmountDonated);
 
   /*
     Timeout for evaluation purposes only
@@ -75,7 +102,11 @@ export function* addUserDonation({ animalId, userId, amountDonated }) {
   */
   yield new Promise(resolve => setTimeout(resolve, 1000));
 
-  yield call(CacheService.set, 'USER_DONATIONS', userDonations);
-  yield put(DonationsActions.updateUserDonations(userDonations));
-  yield put(LoaderActions.stopLoading());
+  yield all([
+    call(CacheService.set, 'USER_DONATIONS', userDonations),
+    call(CacheService.set, 'USER_TOTAL_AMOUNT_DONATED', totalAmountDonated),
+    put(PetsActions.updatePetAmountCollected(petId, amountDonated)),
+    put(DonationsActions.updateUserDonations(userDonations, totalAmountDonated)),
+    put(LoaderActions.stopLoading()),
+  ]);
 }

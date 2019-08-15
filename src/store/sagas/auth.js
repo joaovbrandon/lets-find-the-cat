@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { all, call, put } from 'redux-saga/effects';
 import { AuthService, CacheService } from '../../services';
 import { Creators as LoaderActions } from '../ducks/loader';
 import { Creators as AuthActions } from '../ducks/auth';
@@ -41,14 +41,18 @@ export function* login({ userInput, history }) {
     */
     yield new Promise(resolve => setTimeout(resolve, 1000));
 
-    yield call(history.push, '/');
-    yield call(CacheService.set, 'USER', user);
-    yield put(DonationsActions.getUserDonations(user.id));
-    yield put(AuthActions.loginSuccess(user));
-    yield put(LoaderActions.stopLoading());
+    yield all([
+      call(history.push, '/'),
+      call(CacheService.set, 'USER', user),
+      put(DonationsActions.getUserDonations(user.id)),
+      put(AuthActions.loginSuccess(user)),
+      put(LoaderActions.stopLoading()),
+    ]);
   } catch (err) {
-    yield put(AuthActions.loginFailure());
-    yield put(LoaderActions.stopLoading());
+    yield all([
+      put(AuthActions.loginFailure()),
+      put(LoaderActions.stopLoading()),
+    ]);
   }
 }
 
@@ -58,15 +62,18 @@ export function* logout({ history }) {
   }
 
   yield put(LoaderActions.startLoading('Logging out...'));
-  yield call(CacheService.clear);
-  yield put(DonationsActions.logout());
 
   /*
     Timeout for evaluation purposes only
     (for the loading be visible if the action was too fast)
   */
-  yield new Promise(resolve => setTimeout(resolve, 500));
+  yield new Promise(resolve => setTimeout(resolve, 1000));
 
-  yield call(history.push, '/');
-  yield put(LoaderActions.stopLoading());
+  yield all([
+    call(CacheService.clear),
+    call(history.push, '/'),
+    put(DonationsActions.logout()),
+    put(AuthActions.logoutSuccess()),
+    put(LoaderActions.stopLoading()),
+  ]);
 }
