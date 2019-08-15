@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { HelperService } from '../../services';
 import { Container, Message } from './styles';
 
 function Loader({ isLoading, message }) {
   useEffect(() => {
     if (isLoading) {
-      document.body.style.height = '100vh';
-      document.body.style.overflow = 'hidden';
+      HelperService.lockScroll();
     } else {
-      document.body.style.height = '';
-      document.body.style.overflow = '';
+      HelperService.lockScroll(false);
     }
   }, [isLoading]);
 

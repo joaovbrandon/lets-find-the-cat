@@ -1,9 +1,18 @@
 import { call, put } from 'redux-saga/effects';
-import { apiService } from '../../services';
+import { AuthService, CacheService } from '../../services';
 import { Creators as LoaderActions } from '../ducks/loader';
 import { Creators as AuthActions } from '../ducks/auth';
+import { Creators as DonationsActions } from '../ducks/donations';
 
 export function* login({ userInput, history }) {
+  if (!userInput || !userInput.Username || !userInput.Password) {
+    throw new Error("You should pass the user input object with 'Username' and 'Password' to auth/LOGIN_REQUEST!");
+  }
+
+  if (!history || !history.push) {
+    throw new Error("You should pass the 'history' with the 'push' method to auth/LOGIN_REQUEST!");
+  }
+
   yield put(LoaderActions.startLoading('Logging In...'));
 
   try {
@@ -13,18 +22,17 @@ export function* login({ userInput, history }) {
 
       But for now, we just get the user from GitHub API!
     */
-    const { data: userData } = yield call(apiService.gitHub.get, `/users/${userInput.Username}`);
+    const { data: userData } = yield call(AuthService.get, `/users/${userInput.Username}`);
 
     /*
       Here we define the user object using
-      some data form GitHub API and mocks...
+      some data form GitHub API...
     */
     const user = {
       id: userData.id,
       login: userData.login,
       avatar_url: userData.avatar_url,
       name: userData.name,
-      amountDonated: Math.floor(Math.random() * 100000),
     };
 
     /*
@@ -33,12 +41,32 @@ export function* login({ userInput, history }) {
     */
     yield new Promise(resolve => setTimeout(resolve, 1000));
 
-    history.push('/');
-
+    yield call(history.push, '/');
+    yield call(CacheService.set, 'USER', user);
+    yield put(DonationsActions.getUserDonations(user.id));
     yield put(AuthActions.loginSuccess(user));
     yield put(LoaderActions.stopLoading());
   } catch (err) {
     yield put(AuthActions.loginFailure());
     yield put(LoaderActions.stopLoading());
   }
+}
+
+export function* logout({ history }) {
+  if (!history || !history.push) {
+    throw new Error("You should pass the 'history' with the 'push' method to auth/LOGOUT!");
+  }
+
+  yield put(LoaderActions.startLoading('Logging out...'));
+  yield call(CacheService.clear);
+  yield put(DonationsActions.logout());
+
+  /*
+    Timeout for evaluation purposes only
+    (for the loading be visible if the action was too fast)
+  */
+  yield new Promise(resolve => setTimeout(resolve, 500));
+
+  yield call(history.push, '/');
+  yield put(LoaderActions.stopLoading());
 }

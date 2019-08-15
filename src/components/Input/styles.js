@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import { Input } from '@rocketseat/unform';
-import { colors, fontSizes } from '../../styles';
+import { colors, fontSizes, screen } from '../../styles';
 
 export const Container = styled.div`
   position: relative;
-  margin: 0 5px 20px 5px;
+  margin: 0 5px 5px 5px;
+
+  ${screen('max', 'md')`
+    margin: 0 5px 20px 5px;
+  `}
 
   span {
     position: absolute;

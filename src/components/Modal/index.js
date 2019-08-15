@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { HelperService } from '../../services';
 import {
   Container, Opacity, Content, Close,
 } from './styles';
@@ -24,15 +25,13 @@ function Modal({
     };
 
     if (opened) {
-      document.body.style.height = '100vh';
-      document.body.style.overflow = 'hidden';
+      HelperService.lockScroll();
       window.addEventListener('keyup', closeModalListener);
       window.addEventListener('resize', closeModalListener);
     }
 
     return () => {
-      document.body.style.height = '';
-      document.body.style.overflow = '';
+      HelperService.lockScroll(false);
       window.removeEventListener('keyup', closeModalListener);
       window.removeEventListener('resize', closeModalListener);
     };

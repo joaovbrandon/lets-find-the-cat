@@ -13,8 +13,10 @@ const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 middlewares.push(sagaMiddleware);
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const composer = IS_DEV
-  ? compose(
+  ? composeEnhancers(
     applyMiddleware(...middlewares),
     reactotron.createEnhancer(),
   )

@@ -24,11 +24,11 @@ export default styled.button`
   transition: .5s;
 
   &:hover {
-    background: ${({ btnStyle }) => {
+  background: ${({ btnStyle }) => {
     if (btnStyle === 2) return 'transparent';
     return colors.primary;
   }};
-    border: ${({ btnStyle }) => {
+  border: ${({ btnStyle }) => {
     if (btnStyle === 2) return `2px solid ${colors.primary}`;
     return null;
   }};

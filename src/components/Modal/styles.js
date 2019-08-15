@@ -34,7 +34,7 @@ export const Content = styled.div`
   padding: 50px;
 
   ${screen('max', 'sm')`
-    padding: 35px 20px;
+    padding: 40px 20px;
   `}
 
   h2 {

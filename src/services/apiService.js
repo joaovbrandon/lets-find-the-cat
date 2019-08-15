@@ -1,13 +1,10 @@
 import axios from 'axios';
+import { API } from '../configs';
 
-const ApiService = {};
-
-ApiService.gitHub = axios.create({
-  /*
-    Used to simulate the login, the "username" inputed in the
-    LoginForm is used to get this user from GitHub
-  */
-  baseURL: 'https://api.github.com/',
-});
+/*
+  Just configuring a simple ApiService as an example!
+  In the exercise it is not used, the data was mocked with a simple JSON
+*/
+const ApiService = axios.create({ baseURL: API.HOST });
 
 export default ApiService;

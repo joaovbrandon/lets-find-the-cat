@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -6,7 +6,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Creators as AuthActions } from '../../store/ducks/auth';
-import { Creators as LoaderActions } from '../../store/ducks/loader';
 import { useMetrics } from '../../hooks';
 import Button from '../Button';
 import LoginForm from '../LoginForm';
@@ -23,26 +22,15 @@ import {
   MobileMenuOpacity,
 } from './styles';
 
-function Header({
-  user, startLoading, stopLoading, logout, history,
-}) {
+function Header({ user, logout, history }) {
   const metrics = useMetrics();
-  const [modalOpened, setModalOpened] = useState(false);
+  const [modalMobileLoginOpened, setModalMobileLoginOpened] = useState(false);
+  const [modalMyDonationsOpened, setModalMyDonationsOpened] = useState(false);
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
 
-  const handleLogout = async () => {
-    startLoading('Logging out...');
-
-    /*
-      Timeout for evaluation purposes only
-      (for the loading be visible if the action was too fast)
-    */
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    await logout();
-    await history.push('/');
-    stopLoading();
-  };
+  useEffect(() => {
+    setModalMobileLoginOpened(false);
+  }, [user]);
 
   const handleMobileMenu = () => {
     if (!metrics.isXS) return;
@@ -56,11 +44,22 @@ function Header({
         {(metrics.isXS && mobileMenuOpened) && <MobileMenuOpacity onClick={handleMobileMenu} />}
         <UserInfos mobileMenuOpened={mobileMenuOpened}>
           <UserName>{user.name}</UserName>
-          <MenuItem type="button">My Donations</MenuItem>
-          <MenuItem type="button" onClick={handleLogout}>Log Out</MenuItem>
+          <MenuItem type="button" onClick={() => setModalMyDonationsOpened(true)}>My Donations</MenuItem>
+          <MenuItem type="button" onClick={() => logout(history)}>Log Out</MenuItem>
         </UserInfos>
         {metrics.isXS && <FontAwesomeIcon icon={faEllipsisV} size="sm" />}
       </UserContainer>
+      {
+        !modalMobileLoginOpened && (
+          <Modal
+            opened={modalMyDonationsOpened}
+            setOpened={setModalMyDonationsOpened}
+            title="My Donations"
+          >
+            <p>Donations</p>
+          </Modal>
+        )
+      }
     </>
   );
 
@@ -76,15 +75,15 @@ function Header({
       )
       : (
         <>
-          <Button btnStyle={2} type="button" onClick={() => setModalOpened(true)}>
+          <Button btnStyle={2} type="button" onClick={() => setModalMobileLoginOpened(true)}>
             Log In
             {' '}
             <FontAwesomeIcon icon={faSignInAlt} size="sm" />
           </Button>
 
           <Modal
-            opened={modalOpened}
-            setOpened={setModalOpened}
+            opened={modalMobileLoginOpened}
+            setOpened={setModalMobileLoginOpened}
             title="Let's find the cat!"
             description="Log In to donate and help find lost cats!"
           >
@@ -116,8 +115,6 @@ Header.propTypes = {
     name: PropTypes.string,
     amountDonated: PropTypes.number,
   }),
-  startLoading: PropTypes.func.isRequired,
-  stopLoading: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -128,10 +125,7 @@ const mapStateToProps = state => ({
   user: state.auth.user,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  ...AuthActions,
-  ...LoaderActions,
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default compose(
   withRouter,

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookSquare, faInstagram, faYoutube, faTwitter,
@@ -10,7 +11,7 @@ const Footer = () => (
   <Container>
     <Copyright>
       Let&apos;s find the cat! · Copyright
-      {` ${new Date().getFullYear()} `}
+      {` ${moment().year()} `}
       · All rights reserved
     </Copyright>
     <SocialMedia>

@@ -1,5 +1,11 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
+export const API = {
+  AUTH: 'https://api.github.com/',
+  // Just an example
+  HOST: 'https://api.letsfindthecat.com/',
+};
+
 export const CACHE = {
   PREFIX: IS_DEV ? 'LetsFindTheCat@dev@' : 'LetsFindTheCat@',
   DEFAULT_DURATION: 86400000, // 24h

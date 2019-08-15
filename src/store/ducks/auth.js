@@ -1,18 +1,18 @@
 import { createActions, createReducer } from 'reduxsauce';
-import { cacheService } from '../../services';
+import { CacheService } from '../../services';
 
 export const { Types, Creators } = createActions(
   {
     loginRequest: ['userInput', 'history'],
     loginSuccess: ['user'],
     loginFailure: null,
-    logout: null,
+    logout: ['history'],
   },
   { prefix: 'auth/' },
 );
 
 const INITIAL_STATE = {
-  user: cacheService.get('USER') || null,
+  user: CacheService.get('USER') || null,
   requesting: false,
   error: false,
 };
@@ -20,17 +20,14 @@ const INITIAL_STATE = {
 export const loginRequest = (state = INITIAL_STATE) => ({
   ...state,
   requesting: true,
+  error: false,
 });
 
-export const loginSuccess = (state, { user }) => {
-  cacheService.set('USER', user);
-
-  return {
-    user,
-    requesting: false,
-    error: false,
-  };
-};
+export const loginSuccess = (state, { user }) => ({
+  ...state,
+  user,
+  requesting: false,
+});
 
 export const loginFailure = () => ({
   user: null,
@@ -38,15 +35,10 @@ export const loginFailure = () => ({
   error: true,
 });
 
-export const logout = () => {
-  cacheService.clear();
-
-  return {
-    user: null,
-    requesting: false,
-    error: false,
-  };
-};
+export const logout = () => ({
+  ...INITIAL_STATE,
+  user: null,
+});
 
 export default createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: loginRequest,
