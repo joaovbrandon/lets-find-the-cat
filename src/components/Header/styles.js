@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { colors, screen, fontSizes } from '../../styles';
 import { ReactComponent as originalLogo } from '../../assets/logo-lets-find-the-cat.svg';
+import userFallback from '../../assets/user-fallback.png';
 
 export const Container = styled.header`
   position: sticky;
@@ -10,10 +11,11 @@ export const Container = styled.header`
   align-items: center;
   flex-direction: row;
   background: ${colors.headerBg};
-  padding: 15px 15%;
+  padding: 20px 15%;
+  z-index: 9997;
 
   ${screen('max', 'sm')`
-    padding: 10px 10%;
+  padding: 10px 10%;
   `}
 `;
 
@@ -23,9 +25,9 @@ export const Logo = styled(originalLogo)`
   max-width: 150px;
 
   ${screen('max', 'sm')`
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   `}
 `;
 
@@ -50,18 +52,31 @@ export const UserContainer = styled.div`
   }
 
   ${screen('max', 'sm')`
-    cursor: pointer;
+  cursor: pointer;
   `}
 `;
 
 export const UserAvatar = styled.img`
   border-radius: 50%;
+  width: 60px;
+  min-width: 60px;
   max-width: 60px;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
   margin-right: 10px;
   position: relative;
+  background-color: ${colors.imgFallback};
+  background: url(${userFallback});
+  background-size: cover;
 
   ${screen('max', 'sm')`
-    max-width: 50px;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
   `};
 `;
 
@@ -70,20 +85,21 @@ export const UserInfos = styled.div`
   flex-direction: column;
 
   ${screen('max', 'sm')`
-    display: ${({ mobileMenuOpened }) => {
-    if (mobileMenuOpened) return 'flex';
-    return 'none';
-  }};
-    position: absolute;
-    top: 70px;
-    right: 10%;
-    background: ${colors.background};
-    border: 1px solid ${colors.primary};
-    border-radius: 10px;
-    padding: 5px 10px;
-    -webkit-box-shadow: -2px 40px 10px 0px ${colors.mobileMenuShadow};
-    -moz-box-shadow: -2px 40px 10px 0px ${colors.mobileMenuShadow};
-    box-shadow: -2px 0px 10px 0px ${colors.mobileMenuShadow};
+  position: absolute;
+  top: 70px;
+  right: 10%;
+  background: ${colors.background};
+  border: 1px solid ${colors.primary};
+  border-radius: 10px;
+  padding: 5px 10px;
+  -webkit-box-shadow: -2px 40px 10px 0px ${colors.mobileMenuShadow};
+  -moz-box-shadow: -2px 40px 10px 0px ${colors.mobileMenuShadow};
+  box-shadow: -2px 0px 10px 0px ${colors.mobileMenuShadow};
+
+  ${({ mobileMenuOpened }) => {
+    if (mobileMenuOpened) return 'display: flex;';
+    return 'display: none;';
+  }}
   `}
 `;
 
@@ -107,9 +123,9 @@ export const MenuItem = styled.button`
   }
 
   ${screen('max', 'sm')`
-    text-align: center;
-    font-size: ${fontSizes.small};
-    margin: 5px 0;
+  text-align: center;
+  font-size: ${fontSizes.small};
+  margin: 5px 0;
   `}
 `;
 

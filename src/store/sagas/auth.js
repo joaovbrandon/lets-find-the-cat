@@ -1,5 +1,5 @@
 import { all, call, put } from 'redux-saga/effects';
-import { AuthService, CacheService } from '../../services';
+import { AuthService, CacheService, HelperService } from '../../services';
 import { Creators as LoaderActions } from '../ducks/loader';
 import { Creators as AuthActions } from '../ducks/auth';
 import { Creators as DonationsActions } from '../ducks/donations';
@@ -43,6 +43,7 @@ export function* login({ userInput, history }) {
 
     yield all([
       call(history.push, '/'),
+      call(HelperService.scrollToTop),
       call(CacheService.set, 'USER', user),
       put(DonationsActions.getUserDonations(user.id)),
       put(AuthActions.loginSuccess(user)),
@@ -72,6 +73,7 @@ export function* logout({ history }) {
   yield all([
     call(CacheService.clear),
     call(history.push, '/'),
+    call(HelperService.scrollToTop),
     put(DonationsActions.logout()),
     put(AuthActions.logoutSuccess()),
     put(LoaderActions.stopLoading()),

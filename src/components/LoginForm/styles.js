@@ -7,7 +7,8 @@ export const Form = styled(unformForm)`
   position: relative;
 
   ${screen('max', 'md')`
-    flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 25px;
   `}
 `;
 
@@ -20,8 +21,8 @@ export const LoginError = styled.span`
   line-height: 1.1;
 
   ${screen('max', 'md')`
-    margin-top: -10px;
-    margin-bottom: 10px;
-    position: initial;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: initial;
   `}
 `;

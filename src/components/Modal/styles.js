@@ -13,9 +13,21 @@ export const Container = styled.div`
   left: 0;
   right: 0;
   padding: 10px;
-  visibility: ${({ opened }) => (opened ? 'visible' : 'hidden')};
-  opacity: ${({ opened }) => (opened ? '1' : '0')};
   transition: visibility .4s, opacity .2s linear;
+
+  ${({ opened }) => {
+    if (opened) {
+      return `
+        visibility: visible;
+        opacity: 1;
+      `;
+    }
+
+    return `
+      visibility: hidden;
+      opacity: 0;
+    `;
+  }}
 `;
 
 export const Opacity = styled.div`
@@ -31,9 +43,10 @@ export const Content = styled.div`
   background: ${colors.background};
   border-radius: 10px;
   position: relative;
-  padding: 0 20px 20px 20px;
-  max-width: 80%;
-  max-height: 80%;
+  padding: 0 20px;
+  max-width: 90%;
+  min-width: 270px;
+  max-height: 90%;
   word-break: break-word;
   overflow: scroll;
 

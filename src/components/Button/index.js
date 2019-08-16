@@ -6,31 +6,35 @@ export default styled.button`
   padding: 0 10px;
   height: 40px;
   border-radius: 8px;
-  background: ${({ btnStyle }) => {
-    if (btnStyle === 2) return 'transparent';
-    return colors.secondary;
-  }};
-  border: ${({ btnStyle }) => {
-    if (btnStyle === 2) return `2px solid ${colors.secondary}`;
-    return `2px solid ${colors.primary}`;
-  }};
-  color: ${({ btnStyle }) => {
-    if (btnStyle === 2) return colors.secondary;
-    return colors.white;
-  }};
   font-size: ${fontSizes.small};
   font-weight: bold;
   cursor: pointer;
   transition: .5s;
 
+  ${({ btnStyle }) => {
+    if (btnStyle === 2) {
+      return `
+        background: transparent;
+        border: 2px solid ${colors.secondary};
+        color: ${colors.secondary};
+      `;
+    }
+
+    return `
+      background: ${colors.secondary};
+      border: 2px solid ${colors.primary};
+      color: ${colors.white};
+    `;
+  }}
+
   &:hover {
-  background: ${({ btnStyle }) => {
-    if (btnStyle === 2) return 'transparent';
-    return colors.primary;
-  }};
-  border: ${({ btnStyle }) => {
-    if (btnStyle === 2) return `2px solid ${colors.primary}`;
-    return null;
-  }};
+  ${({ btnStyle }) => {
+    if (btnStyle === 2) return 'background: transparent;';
+
+    return `
+      background: ${colors.primary};
+      border: 2px solid ${colors.primary};
+    `;
+  }}
   }
 `;

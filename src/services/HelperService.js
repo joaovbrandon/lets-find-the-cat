@@ -21,4 +21,6 @@ HelperService.lockScroll = (lock = true) => {
 
 HelperService.mockId = () => (Math.random() * 9999999999).toFixed();
 
+HelperService.scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
 export default HelperService;

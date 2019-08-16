@@ -14,7 +14,7 @@ export const Value = styled.span`
   font-size: ${fontSizes.big};
 
   ${screen('max', 'xs')`
-    display: block;
+  display: block;
   `}
 `;
 

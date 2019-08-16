@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles';
+import { colors, screen } from '../../styles';
 
 export const Container = styled.section`
   display: flex;
@@ -8,5 +8,9 @@ export const Container = styled.section`
   flex-direction: column;
   text-align: center;
   color: ${colors.primary};
-  padding: 30px 40px;
+  padding: 30px 15%;
+
+  ${screen('max', 'sm')`
+    padding: 30px 10% 20px 10%;
+  `}
 `;

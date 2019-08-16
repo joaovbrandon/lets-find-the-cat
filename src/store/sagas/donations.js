@@ -90,11 +90,7 @@ export function* addUserDonation({ petId, userId, amountDonated }) {
     (accumulator, donation) => accumulator + donation.amountDonatedUnformatted, 0,
   );
 
-  console.log('########## totalAmountDonatedUnformatted => ', totalAmountDonatedUnformatted);
-
   const totalAmountDonated = yield HelperService.currencyFormat(totalAmountDonatedUnformatted);
-
-  console.log('########## totalAmountDonated => ', totalAmountDonated);
 
   /*
     Timeout for evaluation purposes only

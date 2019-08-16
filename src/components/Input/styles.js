@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin: 0 5px 5px 5px;
 
   ${screen('max', 'md')`
-    margin: 0 5px 20px 5px;
+  margin: 0 5px 20px 5px;
   `}
 
   span {

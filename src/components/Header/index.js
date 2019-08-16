@@ -6,6 +6,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Creators as AuthActions } from '../../store/ducks/auth';
+import { HelperService } from '../../services';
 import { useMetrics } from '../../hooks';
 import Button from '../Button';
 import LoginForm from '../LoginForm';
@@ -96,7 +97,7 @@ function Header({ user, logout, history }) {
 
   return (
     <Container>
-      <Link to="/">
+      <Link to="/" onClick={HelperService.scrollToTop}>
         <Logo title="Let's find the cat" />
       </Link>
       {user ? renderLoggedContent() : renderLoginForm()}
@@ -110,10 +111,10 @@ Header.defaultProps = {
 
 Header.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.number,
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    name: PropTypes.string,
+    id: PropTypes.number.isRequired,
+    login: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     amountDonated: PropTypes.number,
   }),
   logout: PropTypes.func.isRequired,
