@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form as unformForm } from '@rocketseat/unform';
 import { colors, fontSizes, screen } from '../../styles';
 import petFallback from '../../assets/pet-fallback.png';
 
@@ -95,6 +96,19 @@ export const Picture = styled.img`
   background-size: cover;
 
   ${({ itemStyle }) => {
+    if (itemStyle === 'modal') {
+      return `
+        border-radius: 50%;
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+        height: 120px;
+        min-height: 120px;
+        max-height: 120px;
+        margin: 10px 0 -10px 0;
+      `;
+    }
+
     if (itemStyle === 'list') {
       return `
         border-radius: 50%;
@@ -116,7 +130,10 @@ export const Picture = styled.img`
   }}
 
   ${screen('max', 'sm')`
-  margin-bottom: 30px;
+  ${({ itemStyle }) => {
+    if (itemStyle === 'modal') return null;
+    return 'margin-bottom: 30px;';
+  }}
   `}
 `;
 
@@ -287,4 +304,16 @@ export const CallBtn = styled.a`
   &:hover {
     background: ${colors.callBtnBgHover};
   }
+`;
+
+export const DonateForm = styled(unformForm)`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 30px;
+`;
+
+export const Currency = styled.div`
+  font-size: ${fontSizes.medium};
+  font-weight: bold;
 `;

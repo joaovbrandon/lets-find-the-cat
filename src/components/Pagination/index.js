@@ -81,7 +81,8 @@ function Pagination({
   return (
     <>
       {
-        totalPages > 1 && (
+        totalPages > 1 && currentPage > 0
+        && (
           <Container>
             {renderPrevious()}
             <CurrentPage>{currentPage}</CurrentPage>

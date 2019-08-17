@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as Yup from 'yup';
 import { Creators as DonationsActions } from '../../store/ducks/donations';
+import { currencySymbol } from '../../configs';
 import { HelperService } from '../../services';
+import Modal from '../Modal';
+import Input from '../Input';
 import Button from '../Button';
 import {
   Container,
@@ -18,10 +22,22 @@ import {
   Label,
   DonateContainer,
   CallBtn,
+  DonateForm,
+  Currency,
 } from './styles';
 
+const schema = Yup.object().shape({
+  amountToDonate: Yup.number()
+    .transform((value, originalValue) => {
+      if (!originalValue) return 0;
+      return parseFloat(originalValue.replace(',', '.'));
+    })
+    .max(10, `You may donate up to ${HelperService.currencyFormat(10)}`)
+    .min(0.1, `Minimum donate is ${HelperService.currencyFormat(0.1)}`),
+});
+
 function PetItem({
-  itemStyle, pet, user, amountDonated,
+  itemStyle, pet, user, amountDonated, addUserDonation, isLoading,
 }) {
   const {
     found,
@@ -33,12 +49,36 @@ function PetItem({
     owner,
   } = pet;
 
+  const [modalDonateOpened, setModalDonateOpened] = useState(false);
+  const [amountToDonate, setAmountToDonate] = useState('0,00');
+  const [donationAnimate, setDonationAnimate] = useState(false);
+
+  useEffect(() => {
+    if (itemStyle === 'card' && !amountDonated && !found && !donationAnimate) setDonationAnimate(true);
+
+    if (donationAnimate && amountDonated) console.log('########## ANIMATE');
+  }, [itemStyle, amountDonated, found, setDonationAnimate, donationAnimate]);
+
   const renderInfo = (label, info, props) => (
     <Info itemStyle={itemStyle} {...props}>
       <Label itemStyle={itemStyle}>{label}</Label>
       {` ${info}`}
     </Info>
   );
+
+  const amountToDonateFormat = ({ target }) => {
+    let { value } = target;
+    value = value.replace(/([^0-9])/g, '').replace(/^0+/g, '');
+
+    if (value.length === 5) return;
+    if (value.length === 0) value = '0,00';
+    if (value.length === 1) value = `0,0${value}`;
+    if (value.length === 2) value = `0,${value}`;
+    if (value.length === 3) value = value.replace(/([0-9])([0-9])([0-9])/, '$1,$2$3');
+    if (value.length === 4) value = value.replace(/([1-9])([0-9])([0-9])([0-9])/, '$1$2,$3$4');
+
+    setAmountToDonate(value);
+  };
 
   return (
     <Container itemStyle={itemStyle}>
@@ -75,13 +115,60 @@ function PetItem({
               <strong>{`${amountCollected} `}</strong>
               donated
             </span>
-            {(!amountDonated && !found && user) && <Button type="button">Donate</Button>}
+            {
+              (!amountDonated && !found && user)
+                && <Button type="button" onClick={() => setModalDonateOpened(true)}>Donate</Button>
+            }
           </DonateContainer>
 
           <CallBtn href={`tel:${owner.phoneUnformatted}`}>
             {` ${owner.phone} `}
             Call
           </CallBtn>
+
+          {
+            (!amountDonated && !found && user)
+            && (
+              <Modal
+                opened={modalDonateOpened}
+                setOpened={setModalDonateOpened}
+                title={`Donate to ${name}`}
+                description={`You may donate up to ${HelperService.currencyFormat(10)} to help find this pet!`}
+                maxWidth="350px"
+              >
+                <Picture src={pictureUrl} alt={name} itemStyle="modal" />
+
+                <InfoContainer itemStyle={itemStyle}>
+                  {renderInfo('Lost in', lostDate)}
+                  {renderInfo('Owner', `${owner.firstName} ${owner.lastName}`)}
+                  {renderInfo('Location', locality)}
+                </InfoContainer>
+
+                {
+                  modalDonateOpened
+                  && (
+                    <DonateForm
+                      schema={schema}
+                      onSubmit={
+                        data => addUserDonation(pet.id, user.id, data.amountToDonate)
+                      }
+                    >
+                      <Input
+                        name="amountToDonate"
+                        type="text"
+                        placeholder="0,00"
+                        inputStyle={2}
+                        onChange={amountToDonateFormat}
+                        value={amountToDonate}
+                        icon={<Currency>{currencySymbol}</Currency>}
+                      />
+                      <Button type="submit" disabled={isLoading}>Donate</Button>
+                    </DonateForm>
+                  )
+                }
+              </Modal>
+            )
+          }
         </>
         )
       }
@@ -101,6 +188,7 @@ PetItem.propTypes = {
     id: PropTypes.number.isRequired,
   }),
   pet: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     found: PropTypes.bool.isRequired,
     pictureUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -115,10 +203,13 @@ PetItem.propTypes = {
     }).isRequired,
   }).isRequired,
   amountDonated: PropTypes.string,
+  addUserDonation: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.auth.user,
+  isLoading: state.loader.isLoading,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(DonationsActions, dispatch);

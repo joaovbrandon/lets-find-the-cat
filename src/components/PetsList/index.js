@@ -15,7 +15,7 @@ function PetsList({
   userDonations, petsList, requesting, getPetsList, history, location,
 }) {
   const pageSize = 6;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function PetsList({
   return (
     <Container>
       <Title>Lost and Found Pets</Title>
-      {requesting ? <Loader loaderStyle="spin" /> : renderPetsList()}
+      {!requesting || currentPage > 0 ? renderPetsList() : <Loader loaderStyle="spin" />}
       <Pagination totalPages={totalPages} currentPage={currentPage} />
     </Container>
   );

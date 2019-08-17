@@ -7,7 +7,7 @@ import {
 } from './styles';
 
 function Modal({
-  opened, setOpened, title, description, children, isLoading,
+  opened, setOpened, title, description, maxWidth, children, isLoading,
 }) {
   useEffect(() => {
     const closeModalListener = (event) => {
@@ -40,7 +40,7 @@ function Modal({
   return (
     <Container opened={opened}>
       <Opacity onClick={() => setOpened(false)} />
-      <Content>
+      <Content maxWidth={maxWidth}>
         <Close onClick={() => setOpened(false)}>&times;</Close>
         {title && <h2>{title}</h2>}
         {description && <p>{description}</p>}
@@ -53,6 +53,7 @@ function Modal({
 Modal.defaultProps = {
   title: null,
   description: null,
+  maxWidth: '90%',
 };
 
 Modal.propTypes = {
@@ -60,6 +61,7 @@ Modal.propTypes = {
   setOpened: PropTypes.func.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
+  maxWidth: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

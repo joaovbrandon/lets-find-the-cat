@@ -4,19 +4,39 @@ import { colors, fontSizes, screen } from '../../styles';
 
 export const Container = styled.div`
   position: relative;
-  margin: 0 5px 5px 5px;
+
+  ${({ inputStyle }) => {
+    if (inputStyle === 2) return 'margin: 15px 5px 5px 5px;';
+    return 'margin: 0 5px 5px 5px;';
+  }}
 
   ${screen('max', 'md')`
-  margin: 0 5px 20px 5px;
+  ${({ inputStyle }) => {
+    if (inputStyle === 2) return null;
+    return 'margin: 0 5px 20px 5px;';
+  }}
   `}
 
   span {
-    position: absolute;
-    left: 5px;
-    top: 44px;
-    color: ${colors.primary};
-    font-size: ${fontSizes.smaller};
-    line-height: 1.1;
+  position: absolute;
+  color: ${colors.primary};
+  font-size: ${fontSizes.smaller};
+  line-height: 1.1;
+
+  ${({ inputStyle }) => {
+    if (inputStyle === 2) {
+      return `
+        top: -18px;
+        left: 0;
+        right: 0;
+      `;
+    }
+
+    return `
+      top: 44px;
+      left: 5px;
+    `;
+  }}
   }
 `;
 
@@ -33,4 +53,14 @@ export const UnformInput = styled(Input)`
   &::placeholder {
     color: ${colors.primary};
   }
+`;
+
+export const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  height: 40px;
 `;

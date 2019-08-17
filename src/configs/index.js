@@ -1,5 +1,7 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
+export const currencySymbol = '€';
+
 export const API = {
   AUTH: 'https://api.github.com/',
   // Just an example

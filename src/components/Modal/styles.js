@@ -44,11 +44,12 @@ export const Content = styled.div`
   border-radius: 10px;
   position: relative;
   padding: 0 20px;
-  max-width: 90%;
   min-width: 270px;
   max-height: 90%;
   word-break: break-word;
   overflow: scroll;
+
+  ${({ maxWidth }) => `max-width: ${maxWidth}`}
 
   h2 {
     color: ${colors.primary};
