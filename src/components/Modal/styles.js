@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontSizes } from '../../styles';
+import { colors, fontSizes, screen } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
@@ -28,6 +28,10 @@ export const Container = styled.div`
       opacity: 0;
     `;
   }}
+
+  ${screen('max', 'sm')`
+  padding: 0;
+  `}
 `;
 
 export const Opacity = styled.div`
@@ -37,6 +41,10 @@ export const Opacity = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+
+  ${screen('max', 'sm')`
+  background: ${colors.white}
+  `}
 `;
 
 export const Content = styled.div`
@@ -60,6 +68,17 @@ export const Content = styled.div`
     color: ${colors.secondary};
     margin: -20px 0 20px 0;
   }
+
+  ${screen('max', 'sm')`
+  border-radius: 0;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  margin: 0;
+  `}
 `;
 
 export const Close = styled.span`
@@ -70,4 +89,8 @@ export const Close = styled.span`
   cursor: pointer;
   font-weight: bold;
   font-size: ${fontSizes.bigger};
+
+  ${screen('max', 'sm')`
+  font-size: ${fontSizes.gigantic};
+  `}
 `;

@@ -24,6 +24,7 @@ import {
   CallBtn,
   DonateForm,
   Currency,
+  DonateButton,
 } from './styles';
 
 const schema = Yup.object().shape({
@@ -57,7 +58,13 @@ function PetItem({
   useEffect(() => {
     if (itemStyle === 'card' && !found && !amountDonated && !animateWhenDonate) setAnimateWhenDonate(true);
     if (animateWhenDonate && amountDonated) setDonationAnimate(true);
-  }, [itemStyle, found, amountDonated, animateWhenDonate, setAnimateWhenDonate, setDonationAnimate]);
+  }, [
+    itemStyle, found, amountDonated, animateWhenDonate, setAnimateWhenDonate, setDonationAnimate,
+  ]);
+
+  useEffect(() => {
+    setAmountToDonate('0,00');
+  }, [modalDonateOpened, setAmountToDonate]);
 
   const renderInfo = (label, info, props) => (
     <Info itemStyle={itemStyle} {...props}>
@@ -84,7 +91,11 @@ function PetItem({
     <Container itemStyle={itemStyle} animation={donationAnimate}>
       {itemStyle === 'card' && <Name>{name}</Name>}
 
-      <PictureContainer itemStyle={itemStyle}>
+      <PictureContainer
+        itemStyle={itemStyle}
+        hasLink={itemStyle === 'card' && !amountDonated && !found && user}
+        onClick={() => itemStyle === 'card' && !amountDonated && !found && user && setModalDonateOpened(true)}
+      >
         <Picture src={pictureUrl} alt={name} itemStyle={itemStyle} />
       </PictureContainer>
 
@@ -162,7 +173,7 @@ function PetItem({
                         value={amountToDonate}
                         icon={<Currency>{currencySymbol}</Currency>}
                       />
-                      <Button type="submit" disabled={isLoading}>Donate</Button>
+                      <DonateButton type="submit" disabled={isLoading}>Donate</DonateButton>
                     </DonateForm>
                   )
                 }

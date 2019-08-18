@@ -27,13 +27,11 @@ function Modal({
     if (opened) {
       HelperService.lockScroll();
       window.addEventListener('keyup', closeModalListener);
-      window.addEventListener('resize', closeModalListener);
     }
 
     return () => {
       HelperService.lockScroll(false);
       window.removeEventListener('keyup', closeModalListener);
-      window.removeEventListener('resize', closeModalListener);
     };
   }, [opened, setOpened, isLoading]);
 

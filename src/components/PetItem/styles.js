@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form as unformForm } from '@rocketseat/unform';
+import Button from '../Button';
 import { colors, fontSizes, screen } from '../../styles';
 import petFallback from '../../assets/pet-fallback.png';
 
@@ -95,6 +96,11 @@ export const Name = styled.h2`
 `;
 
 export const PictureContainer = styled.div`
+  ${({ hasLink }) => {
+    if (hasLink) return 'cursor: pointer;';
+    return null;
+  }}
+
   ${({ itemStyle }) => {
     if (itemStyle !== 'card') return null;
 
@@ -345,4 +351,8 @@ export const DonateForm = styled(unformForm)`
 export const Currency = styled.div`
   font-size: ${fontSizes.medium};
   font-weight: bold;
+`;
+
+export const DonateButton = styled(Button)`
+  margin-left: 0;
 `;

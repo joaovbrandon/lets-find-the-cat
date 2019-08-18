@@ -23,7 +23,7 @@ function Pagination({
   }, [metrics, setOffset]);
 
   const goToPage = (pageNumber) => {
-    HelperService.scrollToTop();
+    HelperService.scrollToTop(false);
 
     const params = queryString.parse(location.search);
     params.page = pageNumber;

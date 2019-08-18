@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -20,12 +20,18 @@ const schema = Yup.object().shape({
 function LoginForm({
   loginRequest, requesting, error, history,
 }) {
+  const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    if (error) setShowError(true);
+  }, [error]);
+
   return (
     <Form schema={schema} onSubmit={data => loginRequest(data, history)}>
-      {error && <LoginError>Incorrect username or password.</LoginError>}
+      {showError && <LoginError>Incorrect username or password</LoginError>}
       <Input name="Username" type="text" placeholder="Username" />
       <Input name="Password" type="password" placeholder="Password" />
-      <Button type="submit" disabled={requesting}>Log In</Button>
+      <Button type="submit" disabled={requesting} onClick={() => setShowError(false)}>Log In</Button>
     </Form>
   );
 }

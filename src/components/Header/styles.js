@@ -11,7 +11,7 @@ export const Container = styled.header`
   align-items: center;
   flex-direction: row;
   background: ${colors.headerBg};
-  padding: 20px 15%;
+  padding: 15px 15%;
   z-index: 9997;
 
   ${screen('max', 'sm')`
@@ -124,7 +124,7 @@ export const MenuItem = styled.button`
 
   ${screen('max', 'sm')`
   text-align: center;
-  font-size: ${fontSizes.small};
+  font-size: ${fontSizes.regular};
   margin: 5px 0;
   `}
 `;

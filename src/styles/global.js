@@ -19,6 +19,13 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     outline: 0;
     font-size: ${fontSizes.regular};
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
   }
 
   body {

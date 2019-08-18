@@ -6,37 +6,40 @@ export const Container = styled.div`
   position: relative;
 
   ${({ inputStyle }) => {
-    if (inputStyle === 2) return 'margin: 15px 5px 5px 5px;';
-    return 'margin: 0 5px 5px 5px;';
+    if (inputStyle === 2) return 'margin: 20px 0 5px 0;';
+    return 'margin: 0 5px 8px 5px;';
   }}
-
-  ${screen('max', 'md')`
-  ${({ inputStyle }) => {
-    if (inputStyle === 2) return null;
-    return 'margin: 0 5px 20px 5px;';
-  }}
-  `}
 
   span {
   position: absolute;
+  display: table-cell;
+  padding: 3px 0 0 5px;
   color: ${colors.primary};
   font-size: ${fontSizes.smaller};
-  line-height: 1.1;
+  line-height: .9;
 
   ${({ inputStyle }) => {
-    if (inputStyle === 2) {
-      return `
-        top: -18px;
-        left: 0;
-        right: 0;
-      `;
-    }
+    if (inputStyle !== 2) return null;
 
     return `
-      top: 44px;
-      left: 5px;
+      font-size: ${fontSizes.small};
+      margin-top: -61px;
+      left: 0;
+      right: 0;
+      font-weight: bold;
     `;
   }}
+
+  ${screen('max', 'sm')`
+  ${({ inputStyle }) => {
+    if (inputStyle === 2) return `font-size: ${fontSizes.regular};`;
+
+    return `
+      position: initial;
+      font-size: ${fontSizes.small};
+    `;
+  }}
+  `}
   }
 `;
 

@@ -8,21 +8,24 @@ export const Form = styled(unformForm)`
 
   ${screen('max', 'md')`
   flex-direction: column;
-  margin-bottom: 25px;
+  margin-top: 30px;
   `}
 `;
 
 export const LoginError = styled.span`
   position: absolute;
-  left: 5px;
-  top: 44px;
+  left: 10px;
+  top: 43px;
   color: ${colors.primary};
   font-size: ${fontSizes.smaller};
   line-height: 1.1;
 
   ${screen('max', 'md')`
+  font-size: ${fontSizes.regular};
+  font-weigth: bold;
   margin-top: -10px;
   margin-bottom: 10px;
   position: initial;
+  font-weight: bold;
   `}
 `;
