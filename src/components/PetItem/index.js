@@ -51,13 +51,13 @@ function PetItem({
 
   const [modalDonateOpened, setModalDonateOpened] = useState(false);
   const [amountToDonate, setAmountToDonate] = useState('0,00');
+  const [animateWhenDonate, setAnimateWhenDonate] = useState(false);
   const [donationAnimate, setDonationAnimate] = useState(false);
 
   useEffect(() => {
-    if (itemStyle === 'card' && !amountDonated && !found && !donationAnimate) setDonationAnimate(true);
-
-    if (donationAnimate && amountDonated) console.log('########## ANIMATE');
-  }, [itemStyle, amountDonated, found, setDonationAnimate, donationAnimate]);
+    if (itemStyle === 'card' && !found && !amountDonated && !animateWhenDonate) setAnimateWhenDonate(true);
+    if (animateWhenDonate && amountDonated) setDonationAnimate(true);
+  }, [itemStyle, found, amountDonated, animateWhenDonate, setAnimateWhenDonate, setDonationAnimate]);
 
   const renderInfo = (label, info, props) => (
     <Info itemStyle={itemStyle} {...props}>
@@ -81,7 +81,7 @@ function PetItem({
   };
 
   return (
-    <Container itemStyle={itemStyle}>
+    <Container itemStyle={itemStyle} animation={donationAnimate}>
       {itemStyle === 'card' && <Name>{name}</Name>}
 
       <PictureContainer itemStyle={itemStyle}>
