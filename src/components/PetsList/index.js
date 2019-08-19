@@ -22,11 +22,22 @@ function PetsList({
   const [petsListFiltered, setPetsListFiltered] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+
   const [excludeFoundPets, setExcludeFoundPets] = useState(false);
+
   const [regions, setRegions] = useState([]);
   const [regionsOptions, setRegionsOptions] = useState([]);
   const [defaultRegionsOptions, setDefaultRegionsOptions] = useState([]);
+
   const [orderBy, setOrderBy] = useState('lostDateDesc');
+  const [defaultOrderByOption, setDefaultOrderByOption] = useState({
+    value: 'lostDateDesc', label: 'Lost Date Descending',
+  });
+  const [orderByOptions] = useState([
+    { value: 'lostDateDesc', label: 'Lost Date Descending' },
+    { value: 'lostDateAsc', label: 'Lost Date Ascending' },
+    { value: 'petName', label: 'Pet Name' },
+  ]);
 
   useEffect(() => {
     getPetsList();
@@ -34,10 +45,21 @@ function PetsList({
 
   useEffect(() => {
     const params = queryString.parse(location.search, { parseBooleans: true });
+    const newOrderBy = params.orderBy ? params.orderBy : 'lostDateDesc';
     setExcludeFoundPets(!params.excludeFoundPets);
     setRegions(params.regions ? params.regions : []);
-    setOrderBy(params.orderBy ? params.orderBy : 'lostDateDesc');
-  }, [location, setExcludeFoundPets, setRegions, setOrderBy]);
+    setOrderBy(newOrderBy);
+    setDefaultOrderByOption([...orderByOptions].find(orderByOption => (
+      orderByOption.value === newOrderBy
+    )));
+  }, [
+    location,
+    orderByOptions,
+    setExcludeFoundPets,
+    setRegions,
+    setOrderBy,
+    setDefaultOrderByOption,
+  ]);
 
   useEffect(() => {
     if (totalPages > 0 && !loading) {
@@ -118,8 +140,22 @@ function PetsList({
     const params = queryString.parse(location.search);
     delete params.page;
 
-    if (!selectedRegions) delete params.regions;
+    if (!selectedRegions || !selectedRegions.length) delete params.regions;
     else params.regions = selectedRegions.map(({ label }) => label).join(',');
+
+    history.push({
+      ...location,
+      search: queryString.stringify(params),
+    });
+  };
+
+  const handleOrderBy = (selectedOrderBy) => {
+    if (selectedOrderBy.value === orderBy) return;
+
+    const params = queryString.parse(location.search);
+    delete params.page;
+
+    params.orderBy = selectedOrderBy.value;
 
     history.push({
       ...location,
@@ -148,12 +184,23 @@ function PetsList({
           <>
             <Filters>
               <Select
+                label="Filter by regions"
                 name="regions"
                 options={regionsOptions}
-                defaultValue={defaultRegionsOptions}
+                value={defaultRegionsOptions}
                 multiple
-                placeholder="Filter by regions"
+                placeholder="Select the regions"
                 onChange={handleFilterByRegions}
+              />
+
+              <Select
+                label="Order By"
+                name="orderBy"
+                options={orderByOptions}
+                value={defaultOrderByOption}
+                onChange={handleOrderBy}
+                clearable={false}
+                searchable={false}
               />
             </Filters>
             {renderPetsList()}

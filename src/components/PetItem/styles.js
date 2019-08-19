@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+  z-index: 0;
 
   ${({ itemStyle }) => {
     if (itemStyle === 'list') {

@@ -3,26 +3,30 @@ import originalReactSelect from 'react-select';
 import { colors, fontSizes } from '../../styles';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   flex-wrap: wrap;
   flex: 1 0;
+  margin: 5px;
 
   .select {
     &-container {
-      max-width: 500px;
+      width: 100%;
     }
 
-    &__ {
+    &__{
       &control {
-        width: 100%;
         border-radius: 8px;
         border: 2px solid ${colors.primary};
         color: ${colors.primary};
         font-size: ${fontSizes.small};
         outline: none;
+        min-height: 46px;
 
+        &--is-focused,
         &--menu-is-open,
         &:hover,
         &:focus,
@@ -33,7 +37,8 @@ export const Container = styled.div`
       }
 
       &placeholder,
-      &input {
+      &input,
+      &single-value {
         color: ${colors.primary};
         font-size: ${fontSizes.small};
       }
@@ -74,6 +79,10 @@ export const Container = styled.div`
         color: ${colors.primary};
         font-size: ${fontSizes.small};
 
+        &--is-selected {
+          background: transparent;
+        }
+
         &--is-focused,
         &:hover,
         &:active {
@@ -87,5 +96,11 @@ export const Container = styled.div`
 
 export const ReactSelect = styled(originalReactSelect)`
   flex: 1;
-  z-index: 9996;
+  z-index: auto;
+`;
+
+export const Label = styled.div`
+  font-size: ${fontSizes.small};
+  font-weight: bold;
+  margin-left: 12px;
 `;

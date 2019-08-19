@@ -1,11 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
-import { Container, ReactSelect } from './styles';
+import { Container, Label, ReactSelect } from './styles';
 
 function Select({
   className,
   classNamePrefix,
+  label,
   name,
   options,
   multiple,
@@ -41,6 +42,7 @@ function Select({
 
   return (
     <Container>
+      {label && <Label>{label}</Label>}
       <ReactSelect
         className={className}
         classNamePrefix={classNamePrefix}
@@ -66,6 +68,7 @@ function Select({
 Select.defaultProps = {
   className: 'select-container',
   classNamePrefix: 'select',
+  label: null,
   multiple: false,
   disabled: false,
   loading: false,
@@ -77,10 +80,14 @@ Select.defaultProps = {
 Select.propTypes = {
   className: PropTypes.string,
   classNamePrefix: PropTypes.string,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.number.isRequired,
+      value: PropTypes.oneOfType(
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired,
+      ),
       label: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,

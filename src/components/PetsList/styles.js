@@ -14,6 +14,7 @@ export const Title = styled.h2`
 `;
 
 export const Filters = styled.div`
+  display: flex;
   width: 100%;
   margin: 0 3% 20px 3%;
 
@@ -23,6 +24,7 @@ export const Filters = styled.div`
 
   ${screen('max', 'sm')`
   margin: 0 .5% 20px .5%;
+  flex-direction: column;
   `}
 `;
 
