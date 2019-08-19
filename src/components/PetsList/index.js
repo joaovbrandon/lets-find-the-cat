@@ -128,6 +128,12 @@ function PetsList({
 
     newRegionsOptions = newRegionsOptions.map((label, value) => ({ label, value }));
 
+    newRegionsOptions.sort((a, b) => {
+      if (a.label < b.label) return -1;
+      if (a.label > b.label) return 1;
+      return 0;
+    });
+
     setRegionsOptions([...newRegionsOptions]);
   }, [petsList, setRegionsOptions]);
 

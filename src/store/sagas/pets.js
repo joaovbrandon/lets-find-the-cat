@@ -21,7 +21,7 @@ export function* getPetsList() {
         lastName: 'Williams',
         phone: 351839560227,
       },
-      locality: 'Epworth',
+      locality: 'Albufeira',
       found: true,
     },
     {
@@ -36,7 +36,7 @@ export function* getPetsList() {
         lastName: 'Michael',
         phone: 351843534285,
       },
-      locality: 'Rose',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -51,7 +51,7 @@ export function* getPetsList() {
         lastName: 'Valdez',
         phone: 351881482243,
       },
-      locality: 'Cutter',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -66,7 +66,7 @@ export function* getPetsList() {
         lastName: 'Reyes',
         phone: 351996512337,
       },
-      locality: 'Tooleville',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -81,7 +81,7 @@ export function* getPetsList() {
         lastName: 'Lindsey',
         phone: 351876598342,
       },
-      locality: 'Bainbridge',
+      locality: 'Olhão',
       found: false,
     },
     {
@@ -96,7 +96,7 @@ export function* getPetsList() {
         lastName: 'Mccray',
         phone: 351978580386,
       },
-      locality: 'Coral',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -111,7 +111,7 @@ export function* getPetsList() {
         lastName: 'Fuentes',
         phone: 351892512289,
       },
-      locality: 'Allison',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -126,7 +126,7 @@ export function* getPetsList() {
         lastName: 'Snider',
         phone: 351957501309,
       },
-      locality: 'Austinburg',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -141,7 +141,7 @@ export function* getPetsList() {
         lastName: 'Hinton',
         phone: 351968445293,
       },
-      locality: 'Wanship',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -156,7 +156,7 @@ export function* getPetsList() {
         lastName: 'Brooks',
         phone: 351912535289,
       },
-      locality: 'Tilleda',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -171,7 +171,7 @@ export function* getPetsList() {
         lastName: 'Riley',
         phone: 351883561386,
       },
-      locality: 'Bodega',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -186,7 +186,7 @@ export function* getPetsList() {
         lastName: 'Mack',
         phone: 351875457216,
       },
-      locality: 'Calvary',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -201,7 +201,7 @@ export function* getPetsList() {
         lastName: 'Bernard',
         phone: 351981412270,
       },
-      locality: 'Allentown',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -216,7 +216,7 @@ export function* getPetsList() {
         lastName: 'Chapman',
         phone: 351976490360,
       },
-      locality: 'Ebro',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -231,7 +231,7 @@ export function* getPetsList() {
         lastName: 'Saunders',
         phone: 351915522286,
       },
-      locality: 'Avalon',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -246,7 +246,7 @@ export function* getPetsList() {
         lastName: 'Carpenter',
         phone: 351997516256,
       },
-      locality: 'Nelson',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -261,7 +261,7 @@ export function* getPetsList() {
         lastName: 'Pierce',
         phone: 351871467268,
       },
-      locality: 'Accoville',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -276,7 +276,7 @@ export function* getPetsList() {
         lastName: 'Daniels',
         phone: 351883433287,
       },
-      locality: 'Sabillasville',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -291,7 +291,7 @@ export function* getPetsList() {
         lastName: 'Finch',
         phone: 351834533363,
       },
-      locality: 'Bonanza',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -306,7 +306,7 @@ export function* getPetsList() {
         lastName: 'Jimenez',
         phone: 351882563350,
       },
-      locality: 'Kaka',
+      locality: 'Olhão',
       found: false,
     },
     {
@@ -321,7 +321,7 @@ export function* getPetsList() {
         lastName: 'Moran',
         phone: 351910546379,
       },
-      locality: 'Wakulla',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -336,7 +336,7 @@ export function* getPetsList() {
         lastName: 'Daugherty',
         phone: 351839416281,
       },
-      locality: 'Kipp',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -351,7 +351,7 @@ export function* getPetsList() {
         lastName: 'Carson',
         phone: 351957480258,
       },
-      locality: 'Movico',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -366,7 +366,7 @@ export function* getPetsList() {
         lastName: 'Watts',
         phone: 351819517398,
       },
-      locality: 'Cuylerville',
+      locality: 'Vilamoura',
       found: true,
     },
     {
@@ -381,7 +381,7 @@ export function* getPetsList() {
         lastName: 'Swanson',
         phone: 351946494348,
       },
-      locality: 'Waterview',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -396,7 +396,7 @@ export function* getPetsList() {
         lastName: 'Oneal',
         phone: 351980444213,
       },
-      locality: 'Finderne',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -411,7 +411,7 @@ export function* getPetsList() {
         lastName: 'Hughes',
         phone: 351949425217,
       },
-      locality: 'Walland',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -426,7 +426,7 @@ export function* getPetsList() {
         lastName: 'Campbell',
         phone: 351939420218,
       },
-      locality: 'Conestoga',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -441,7 +441,7 @@ export function* getPetsList() {
         lastName: 'Robbins',
         phone: 351932446259,
       },
-      locality: 'Brantleyville',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -456,7 +456,7 @@ export function* getPetsList() {
         lastName: 'Becker',
         phone: 351994507298,
       },
-      locality: 'Maury',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -471,7 +471,7 @@ export function* getPetsList() {
         lastName: 'Weaver',
         phone: 351916424306,
       },
-      locality: 'Castleton',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -486,7 +486,7 @@ export function* getPetsList() {
         lastName: 'Combs',
         phone: 351987411250,
       },
-      locality: 'Imperial',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -501,7 +501,7 @@ export function* getPetsList() {
         lastName: 'Suarez',
         phone: 351802549260,
       },
-      locality: 'Itmann',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -516,7 +516,7 @@ export function* getPetsList() {
         lastName: 'Oneil',
         phone: 351944596283,
       },
-      locality: 'Osmond',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -531,7 +531,7 @@ export function* getPetsList() {
         lastName: 'Booker',
         phone: 351950494309,
       },
-      locality: 'Wadsworth',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -546,7 +546,7 @@ export function* getPetsList() {
         lastName: 'Berg',
         phone: 351970451378,
       },
-      locality: 'Idledale',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -561,7 +561,7 @@ export function* getPetsList() {
         lastName: 'Buckner',
         phone: 351943600345,
       },
-      locality: 'Layhill',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -576,7 +576,7 @@ export function* getPetsList() {
         lastName: 'Walker',
         phone: 351945461219,
       },
-      locality: 'Marne',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -591,7 +591,7 @@ export function* getPetsList() {
         lastName: 'Paul',
         phone: 351975557281,
       },
-      locality: 'Rosewood',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -606,7 +606,7 @@ export function* getPetsList() {
         lastName: 'Whitley',
         phone: 351857569258,
       },
-      locality: 'Venice',
+      locality: 'Lagos',
       found: false,
     },
     {
@@ -621,7 +621,7 @@ export function* getPetsList() {
         lastName: 'Mcknight',
         phone: 351920450269,
       },
-      locality: 'Gorham',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -636,7 +636,7 @@ export function* getPetsList() {
         lastName: 'Hancock',
         phone: 351863408376,
       },
-      locality: 'Summerfield',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -651,7 +651,7 @@ export function* getPetsList() {
         lastName: 'Moreno',
         phone: 351963565380,
       },
-      locality: 'Riegelwood',
+      locality: 'Tavira',
       found: true,
     },
     {
@@ -666,7 +666,7 @@ export function* getPetsList() {
         lastName: 'Peterson',
         phone: 351938506341,
       },
-      locality: 'Nescatunga',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -681,7 +681,7 @@ export function* getPetsList() {
         lastName: 'Dalton',
         phone: 351861487290,
       },
-      locality: 'Masthope',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -696,7 +696,7 @@ export function* getPetsList() {
         lastName: 'Hays',
         phone: 351903503316,
       },
-      locality: 'Bawcomville',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -711,7 +711,7 @@ export function* getPetsList() {
         lastName: 'Everett',
         phone: 351981524332,
       },
-      locality: 'Orovada',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -726,7 +726,7 @@ export function* getPetsList() {
         lastName: 'Bush',
         phone: 351918542362,
       },
-      locality: 'Graniteville',
+      locality: 'Lagos',
       found: true,
     },
     {
@@ -741,7 +741,7 @@ export function* getPetsList() {
         lastName: 'Roman',
         phone: 351871467260,
       },
-      locality: 'Kylertown',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -756,7 +756,7 @@ export function* getPetsList() {
         lastName: 'David',
         phone: 351863564262,
       },
-      locality: 'Leola',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -771,7 +771,7 @@ export function* getPetsList() {
         lastName: 'Clements',
         phone: 351935468251,
       },
-      locality: 'Waumandee',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -786,7 +786,7 @@ export function* getPetsList() {
         lastName: 'Dillon',
         phone: 351857533266,
       },
-      locality: 'Loma',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -801,7 +801,7 @@ export function* getPetsList() {
         lastName: 'Hicks',
         phone: 351991477301,
       },
-      locality: 'Gardners',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -816,7 +816,7 @@ export function* getPetsList() {
         lastName: 'Alexander',
         phone: 351860498327,
       },
-      locality: 'Succasunna',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -831,7 +831,7 @@ export function* getPetsList() {
         lastName: 'Adkins',
         phone: 351812409236,
       },
-      locality: 'Moscow',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -846,7 +846,7 @@ export function* getPetsList() {
         lastName: 'Parrish',
         phone: 351833555309,
       },
-      locality: 'Detroit',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -861,7 +861,7 @@ export function* getPetsList() {
         lastName: 'Bartlett',
         phone: 351921563385,
       },
-      locality: 'Holtville',
+      locality: 'Vilamoura',
       found: false,
     },
     {
@@ -876,7 +876,7 @@ export function* getPetsList() {
         lastName: 'Flowers',
         phone: 351935482274,
       },
-      locality: 'Bancroft',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -891,7 +891,7 @@ export function* getPetsList() {
         lastName: 'Solis',
         phone: 351809572201,
       },
-      locality: 'Goochland',
+      locality: 'Salir',
       found: true,
     },
     {
@@ -906,7 +906,7 @@ export function* getPetsList() {
         lastName: 'Atkins',
         phone: 351915535261,
       },
-      locality: 'Lorraine',
+      locality: 'Olhão',
       found: false,
     },
     {
@@ -921,7 +921,7 @@ export function* getPetsList() {
         lastName: 'Dickson',
         phone: 351990527266,
       },
-      locality: 'Greenwich',
+      locality: 'Salir',
       found: false,
     },
     {
@@ -936,7 +936,7 @@ export function* getPetsList() {
         lastName: 'Sykes',
         phone: 351935509394,
       },
-      locality: 'Williams',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -951,7 +951,7 @@ export function* getPetsList() {
         lastName: 'Fuller',
         phone: 351992549383,
       },
-      locality: 'Mappsville',
+      locality: 'Portimão',
       found: true,
     },
     {
@@ -966,7 +966,7 @@ export function* getPetsList() {
         lastName: 'Hoover',
         phone: 351933516271,
       },
-      locality: 'Chalfant',
+      locality: 'Vilamoura',
       found: true,
     },
     {
@@ -981,7 +981,7 @@ export function* getPetsList() {
         lastName: 'Lawrence',
         phone: 351801504362,
       },
-      locality: 'Outlook',
+      locality: 'Salir',
       found: false,
     },
     {
@@ -996,7 +996,7 @@ export function* getPetsList() {
         lastName: 'Tyson',
         phone: 351864519305,
       },
-      locality: 'Trail',
+      locality: 'Salir',
       found: false,
     },
     {
@@ -1011,7 +1011,7 @@ export function* getPetsList() {
         lastName: 'Garcia',
         phone: 351911505293,
       },
-      locality: 'Eastmont',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -1026,7 +1026,7 @@ export function* getPetsList() {
         lastName: 'Peters',
         phone: 351904440240,
       },
-      locality: 'Century',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1041,7 +1041,7 @@ export function* getPetsList() {
         lastName: 'Barr',
         phone: 351917408286,
       },
-      locality: 'Lynn',
+      locality: 'Portimão',
       found: false,
     },
     {
@@ -1056,7 +1056,7 @@ export function* getPetsList() {
         lastName: 'Roach',
         phone: 351819412359,
       },
-      locality: 'Maxville',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -1071,7 +1071,7 @@ export function* getPetsList() {
         lastName: 'Robinson',
         phone: 351949540393,
       },
-      locality: 'Canterwood',
+      locality: 'Olhão',
       found: false,
     },
     {
@@ -1086,7 +1086,7 @@ export function* getPetsList() {
         lastName: 'Prince',
         phone: 351895471304,
       },
-      locality: 'Chapin',
+      locality: 'Albufeira',
       found: true,
     },
     {
@@ -1101,7 +1101,7 @@ export function* getPetsList() {
         lastName: 'Koch',
         phone: 351979589204,
       },
-      locality: 'Shindler',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -1116,7 +1116,7 @@ export function* getPetsList() {
         lastName: 'Higgins',
         phone: 351947574369,
       },
-      locality: 'Carbonville',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -1131,7 +1131,7 @@ export function* getPetsList() {
         lastName: 'Graves',
         phone: 351953577321,
       },
-      locality: 'Southmont',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1146,7 +1146,7 @@ export function* getPetsList() {
         lastName: 'Acosta',
         phone: 351829452310,
       },
-      locality: 'Chamberino',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -1161,7 +1161,7 @@ export function* getPetsList() {
         lastName: 'Stevens',
         phone: 351898403249,
       },
-      locality: 'Churchill',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -1176,7 +1176,7 @@ export function* getPetsList() {
         lastName: 'Marshall',
         phone: 351991503327,
       },
-      locality: 'Grazierville',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1191,7 +1191,7 @@ export function* getPetsList() {
         lastName: 'Franklin',
         phone: 351898473377,
       },
-      locality: 'Wiscon',
+      locality: 'Tavira',
       found: false,
     },
     {
@@ -1206,7 +1206,7 @@ export function* getPetsList() {
         lastName: 'Oconnor',
         phone: 351939476302,
       },
-      locality: 'Lopezo',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1221,7 +1221,7 @@ export function* getPetsList() {
         lastName: 'Dawson',
         phone: 351883481206,
       },
-      locality: 'Dexter',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -1236,7 +1236,7 @@ export function* getPetsList() {
         lastName: 'Hyde',
         phone: 351996600297,
       },
-      locality: 'Bowden',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1251,7 +1251,7 @@ export function* getPetsList() {
         lastName: 'Kent',
         phone: 351942558263,
       },
-      locality: 'Leeper',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -1266,7 +1266,7 @@ export function* getPetsList() {
         lastName: 'Hopkins',
         phone: 351975419302,
       },
-      locality: 'Why',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1281,7 +1281,7 @@ export function* getPetsList() {
         lastName: 'Frost',
         phone: 351938588314,
       },
-      locality: 'Blackgum',
+      locality: 'Almancil',
       found: true,
     },
     {
@@ -1296,7 +1296,7 @@ export function* getPetsList() {
         lastName: 'Wynn',
         phone: 351968575393,
       },
-      locality: 'Sunnyside',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -1311,7 +1311,7 @@ export function* getPetsList() {
         lastName: 'Salazar',
         phone: 351835410339,
       },
-      locality: 'Munjor',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -1326,7 +1326,7 @@ export function* getPetsList() {
         lastName: 'Santana',
         phone: 351939526306,
       },
-      locality: 'Juarez',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -1341,7 +1341,7 @@ export function* getPetsList() {
         lastName: 'Myers',
         phone: 351945588311,
       },
-      locality: 'Franklin',
+      locality: 'Almancil',
       found: false,
     },
     {
@@ -1356,7 +1356,7 @@ export function* getPetsList() {
         lastName: 'Baldwin',
         phone: 351904462396,
       },
-      locality: 'Columbus',
+      locality: 'Salir',
       found: true,
     },
     {
@@ -1371,7 +1371,7 @@ export function* getPetsList() {
         lastName: 'Pace',
         phone: 351880516268,
       },
-      locality: 'Sutton',
+      locality: 'Salir',
       found: true,
     },
     {
@@ -1386,7 +1386,7 @@ export function* getPetsList() {
         lastName: 'Stewart',
         phone: 351963572206,
       },
-      locality: 'Sugartown',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -1401,7 +1401,7 @@ export function* getPetsList() {
         lastName: 'Barrett',
         phone: 351857476245,
       },
-      locality: 'Weeksville',
+      locality: 'Loulé',
       found: true,
     },
     {
@@ -1416,7 +1416,7 @@ export function* getPetsList() {
         lastName: 'Fowler',
         phone: 351942565370,
       },
-      locality: 'Manila',
+      locality: 'Olhão',
       found: true,
     },
     {
@@ -1431,7 +1431,7 @@ export function* getPetsList() {
         lastName: 'Miles',
         phone: 351964503368,
       },
-      locality: 'Buxton',
+      locality: 'Loulé',
       found: false,
     },
     {
@@ -1446,7 +1446,7 @@ export function* getPetsList() {
         lastName: 'Reilly',
         phone: 351826483254,
       },
-      locality: 'Cotopaxi',
+      locality: 'Albufeira',
       found: false,
     },
     {
@@ -1461,7 +1461,7 @@ export function* getPetsList() {
         lastName: 'Baker',
         phone: 351983541219,
       },
-      locality: 'Freeburn',
+      locality: 'Portimão',
       found: true,
     },
     {
@@ -1476,7 +1476,7 @@ export function* getPetsList() {
         lastName: 'Snyder',
         phone: 351929498333,
       },
-      locality: 'Hamilton',
+      locality: 'Faro',
       found: false,
     },
     {
@@ -1491,7 +1491,7 @@ export function* getPetsList() {
         lastName: 'Castro',
         phone: 351821406294,
       },
-      locality: 'Enetai',
+      locality: 'Faro',
       found: true,
     },
     {
@@ -1506,7 +1506,7 @@ export function* getPetsList() {
         lastName: 'Frazier',
         phone: 351870524318,
       },
-      locality: 'Unionville',
+      locality: 'Portimão',
       found: false,
     },
   ];
