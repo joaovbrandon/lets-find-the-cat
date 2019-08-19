@@ -18,6 +18,7 @@ export const Filters = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin: 0 3% 20px 3%;
+  z-index: 9996;
 
   ${screen('max', 'lg')`
   margin: 0 4% 20px 4%;

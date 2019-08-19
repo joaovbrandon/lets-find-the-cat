@@ -96,7 +96,6 @@ export const Container = styled.div`
 
 export const ReactSelect = styled(originalReactSelect)`
   flex: 1;
-  z-index: auto;
 `;
 
 export const Label = styled.div`
