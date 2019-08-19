@@ -41,7 +41,7 @@
   },
   "scripts": {
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
+    "deploy": "cp ./build/index.html ./build/404.html && gh-pages -d build",
     "lint": "./node_modules/.bin/eslint ./src --ext .js",
     "start": "react-scripts start",
     "build": "react-scripts build"

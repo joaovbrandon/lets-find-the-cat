@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Main, NotFound } from './pages';
 
 const Routes = () => (
-  <BrowserRouter basename="/lets-find-the-cat/">
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       <Route exact path="/" component={Main} />
       <Route path="*" component={NotFound} />
