@@ -15,11 +15,27 @@ function PetsList({
   userDonations, petsList, requesting, getPetsList, history, location,
 }) {
   const pageSize = 6;
+  const [loading, setLoading] = useState(true);
+  const [petsListFiltered, setPetsListFiltered] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [excludeFoundPets, setExcludeFoundPets] = useState(false);
+  const [regions, setRegions] = useState([]);
+  const [orderBy, setOrderBy] = useState('lostDateDesc');
 
   useEffect(() => {
-    if (totalPages > 1) {
+    getPetsList();
+  }, [getPetsList]);
+
+  useEffect(() => {
+    const params = queryString.parse(location.search, { parseBooleans: true });
+    setExcludeFoundPets(!params.excludeFoundPets);
+    setRegions(params.regions ? params.regions : []);
+    setOrderBy(params.orderBy ? params.orderBy : 'lostDateDesc');
+  }, [location, setExcludeFoundPets, setRegions, setOrderBy]);
+
+  useEffect(() => {
+    if (totalPages > 0 && !loading) {
       const params = queryString.parse(location.search);
       const page = params.page ? parseInt(params.page, 10) : 1;
 
@@ -34,20 +50,56 @@ function PetsList({
         setCurrentPage(page);
       }
     }
-  }, [location, history, totalPages]);
+  }, [location, history, loading, totalPages, setCurrentPage]);
 
   useEffect(() => {
-    setTotalPages(Math.ceil(petsList.length / pageSize));
-  }, [petsList, setTotalPages]);
+    if (!petsList.length) return;
 
-  useEffect(() => {
-    getPetsList();
-  }, [getPetsList]);
+    setLoading(true);
+
+    let newPetsListFiltered = [...petsList];
+
+    // Exclude found pets
+    if (!excludeFoundPets) newPetsListFiltered = newPetsListFiltered.filter(pet => !pet.found);
+
+    // Filter by region
+    if (regions.length) {
+      newPetsListFiltered = newPetsListFiltered.filter(pet => (
+        regions.includes(pet.locality)));
+    }
+
+    // Order by name
+    newPetsListFiltered.sort((a, b) => {
+      switch (orderBy) {
+        // Pet Name
+        case 'petName':
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+
+        // Lost Date Ascending
+        case 'lostDateAsc':
+          return new Date(a.lostDate) - new Date(b.lostDate);
+
+        // Lost Date Descending
+        default:
+          return new Date(b.lostDate) - new Date(a.lostDate);
+      }
+    });
+
+    const newTotalPages = Math.ceil(newPetsListFiltered.length / pageSize);
+    if (totalPages !== newTotalPages) setTotalPages(newTotalPages > 0 ? newTotalPages : 1);
+
+    setPetsListFiltered([...newPetsListFiltered]);
+    setLoading(false);
+  }, [petsList, excludeFoundPets, regions, orderBy, totalPages, setTotalPages, setLoading]);
 
   const renderPetsList = () => {
-    if (!petsList.length) return <Fallback>We haven&apos;t registered lost pets yet!</Fallback>;
+    if (!petsListFiltered.length) {
+      return <Fallback>We haven&apos;t registered pets that match the filters!</Fallback>;
+    }
 
-    return HelperService.paginate(petsList, pageSize, currentPage).map((pet) => {
+    return HelperService.paginate(petsListFiltered, pageSize, currentPage).map((pet) => {
       const donation = userDonations.filter(tempDonation => tempDonation.petId === pet.id)[0];
       const amountDonated = donation ? donation.amountDonated : null;
       return <PetItem key={pet.id} pet={pet} amountDonated={amountDonated} />;
@@ -57,7 +109,7 @@ function PetsList({
   return (
     <Container>
       <Title>Lost and Found Pets</Title>
-      {!requesting || currentPage > 0 ? renderPetsList() : <Loader loaderStyle="spin" />}
+      {(!requesting && !loading && currentPage > 0) ? renderPetsList() : <Loader loaderStyle="spin" />}
       <Pagination totalPages={totalPages} currentPage={currentPage} />
     </Container>
   );

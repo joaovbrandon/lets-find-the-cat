@@ -24,6 +24,7 @@ HelperService.mockId = () => (Math.random() * 9999999999).toFixed();
 HelperService.scrollToTop = (smooth = true) => window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
 
 HelperService.paginate = (array, pageSize, currentPage) => {
+  if (array.length <= pageSize) return array;
   const pageNumber = currentPage - 1;
   return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
 };
