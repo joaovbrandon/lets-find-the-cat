@@ -3,6 +3,14 @@
 ## Dengun Frontend Exercise Level 2
 See here [joaaoeu.github.io/lets-find-the-cat](https://joaaoeu.github.io/lets-find-the-cat/).
 
+#### To login use a GitHub user and any password longer than 4 characters
+
+**Example with my GitHub user**
+
+> Username: joaaoeu
+
+> Password: 1234
+
 ### Prerequisites
 
 You need [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/en/) (or use [NPM](https://www.npmjs.com/)) to run it.
