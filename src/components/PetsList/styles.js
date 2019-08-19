@@ -15,6 +15,7 @@ export const Title = styled.h2`
 
 export const Filters = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   margin: 0 3% 20px 3%;
 
@@ -26,6 +27,19 @@ export const Filters = styled.div`
   margin: 0 .5% 20px .5%;
   flex-direction: column;
   `}
+`;
+
+export const ExcludeFoundPetsFilter = styled.span`
+  font-size: ${fontSizes.small};
+  color: ${colors.secondary};
+  width: 100%;
+  cursor: pointer;
+  transition: .2s all;
+  margin-top: 10px;
+
+  &:hover {
+    color: ${colors.primary};
+  }
 `;
 
 export const Fallback = styled.h2`

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare, faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import { Creators as PetsActions } from '../../store/ducks/pets';
 import { HelperService } from '../../services';
 import Loader from '../Loader';
@@ -11,7 +13,7 @@ import Pagination from '../Pagination';
 import PetItem from '../PetItem';
 import Select from '../Select';
 import {
-  Container, Title, Filters, Fallback,
+  Container, Title, Filters, ExcludeFoundPetsFilter, Fallback,
 } from './styles';
 
 function PetsList({
@@ -163,6 +165,19 @@ function PetsList({
     });
   };
 
+  const handleExcludeFoundPets = () => {
+    const params = queryString.parse(location.search);
+    delete params.page;
+    delete params.excludeFoundPets;
+
+    if (excludeFoundPets) params.excludeFoundPets = true;
+
+    history.push({
+      ...location,
+      search: queryString.stringify(params),
+    });
+  };
+
   const renderPetsList = () => {
     if (!petsListFiltered.length) {
       return <Fallback>We haven&apos;t registered pets that match the filters!</Fallback>;
@@ -202,6 +217,11 @@ function PetsList({
                 clearable={false}
                 searchable={false}
               />
+
+              <ExcludeFoundPetsFilter onClick={handleExcludeFoundPets}>
+                {'Exclude found pets '}
+                <FontAwesomeIcon icon={excludeFoundPets ? faSquare : faCheckSquare} size="lg" />
+              </ExcludeFoundPetsFilter>
             </Filters>
             {renderPetsList()}
           </>
