@@ -9,7 +9,10 @@ import { HelperService } from '../../services';
 import Loader from '../Loader';
 import Pagination from '../Pagination';
 import PetItem from '../PetItem';
-import { Container, Title, Fallback } from './styles';
+import Select from '../Select';
+import {
+  Container, Title, Filters, Fallback,
+} from './styles';
 
 function PetsList({
   userDonations, petsList, requesting, getPetsList, history, location,
@@ -21,6 +24,8 @@ function PetsList({
   const [totalPages, setTotalPages] = useState(1);
   const [excludeFoundPets, setExcludeFoundPets] = useState(false);
   const [regions, setRegions] = useState([]);
+  const [regionsOptions, setRegionsOptions] = useState([]);
+  const [defaultRegionsOptions, setDefaultRegionsOptions] = useState([]);
   const [orderBy, setOrderBy] = useState('lostDateDesc');
 
   useEffect(() => {
@@ -94,6 +99,34 @@ function PetsList({
     setLoading(false);
   }, [petsList, excludeFoundPets, regions, orderBy, totalPages, setTotalPages, setLoading]);
 
+  useEffect(() => {
+    let newRegionsOptions = Array.from(new Set(petsList.map(({ locality }) => locality)));
+
+    newRegionsOptions = newRegionsOptions.map((label, value) => ({ label, value }));
+
+    setRegionsOptions([...newRegionsOptions]);
+  }, [petsList, setRegionsOptions]);
+
+  useEffect(() => {
+    const newDefaultRegionsOptions = regionsOptions.filter(regionOption => (
+      regions.includes(regionOption.label)));
+
+    setDefaultRegionsOptions([...newDefaultRegionsOptions]);
+  }, [regions, regionsOptions, setDefaultRegionsOptions]);
+
+  const handleFilterByRegions = (selectedRegions) => {
+    const params = queryString.parse(location.search);
+    delete params.page;
+
+    if (!selectedRegions) delete params.regions;
+    else params.regions = selectedRegions.map(({ label }) => label).join(',');
+
+    history.push({
+      ...location,
+      search: queryString.stringify(params),
+    });
+  };
+
   const renderPetsList = () => {
     if (!petsListFiltered.length) {
       return <Fallback>We haven&apos;t registered pets that match the filters!</Fallback>;
@@ -109,7 +142,26 @@ function PetsList({
   return (
     <Container>
       <Title>Lost and Found Pets</Title>
-      {(!requesting && !loading && currentPage > 0) ? renderPetsList() : <Loader loaderStyle="spin" />}
+
+      {(!requesting && !loading && currentPage > 0)
+        ? (
+          <>
+            <Filters>
+              <Select
+                name="regions"
+                options={regionsOptions}
+                defaultValue={defaultRegionsOptions}
+                multiple
+                placeholder="Filter by regions"
+                onChange={handleFilterByRegions}
+              />
+            </Filters>
+            {renderPetsList()}
+          </>
+        )
+        : <Loader loaderStyle="spin" />
+      }
+
       <Pagination totalPages={totalPages} currentPage={currentPage} />
     </Container>
   );

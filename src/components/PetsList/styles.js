@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontSizes } from '../../styles';
+import { colors, fontSizes, screen } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
@@ -11,6 +11,19 @@ export const Container = styled.div`
 export const Title = styled.h2`
   width: 100%;
   margin-bottom: 20px;
+`;
+
+export const Filters = styled.div`
+  width: 100%;
+  margin: 0 3% 20px 3%;
+
+  ${screen('max', 'lg')`
+  margin: 0 4% 20px 4%;
+  `}
+
+  ${screen('max', 'sm')`
+  margin: 0 .5% 20px .5%;
+  `}
 `;
 
 export const Fallback = styled.h2`

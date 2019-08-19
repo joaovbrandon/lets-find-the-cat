@@ -9,6 +9,7 @@ import MyDonations from './MyDonations';
 import Pagination from './Pagination';
 import PetItem from './PetItem';
 import PetsList from './PetsList';
+import Select from './Select';
 
 export {
   Button,
@@ -22,4 +23,5 @@ export {
   Pagination,
   PetItem,
   PetsList,
+  Select,
 };

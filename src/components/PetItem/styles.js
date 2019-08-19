@@ -89,7 +89,7 @@ export const Name = styled.h2`
   color: ${colors.white};
   background: ${colors.nameOpacity};
   position: absolute;
-  z-index: 9996;
+  z-index: 9995;
   width: 100%;
   text-align: center;
   padding: 5px 15px;

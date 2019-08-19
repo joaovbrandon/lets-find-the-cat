@@ -19,6 +19,10 @@ const colors = {
   // Loader
   loaderBg: 'rgba(199, 96, 97, .85)',
 
+  // Forms
+  inputShadow: 'rgba(181, 65, 66, .4)',
+  selectHover: 'rgba(181, 65, 66, .1)',
+
   // Pets
   found: '#f59b17',
   lost: '#c92a2b',

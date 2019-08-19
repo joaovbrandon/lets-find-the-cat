@@ -56,6 +56,13 @@ export const UnformInput = styled(Input)`
   &::placeholder {
     color: ${colors.primary};
   }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: 2px solid ${colors.primary};
+    box-shadow: 0 0 0 1px ${colors.inputShadow};
+  }
 `;
 
 export const Icon = styled.div`
