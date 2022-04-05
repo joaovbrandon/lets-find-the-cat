@@ -1,13 +1,13 @@
 # Let's find the cat!
 
 ## Dengun Frontend Exercise Level 2
-See here [joaaoeu.github.io/lets-find-the-cat](https://joaaoeu.github.io/lets-find-the-cat/).
+See here [joaovbrandon.github.io/lets-find-the-cat](https://joaovbrandon.github.io/lets-find-the-cat/).
 
 #### To login use a GitHub user and any password longer than 4 characters
 
 **Example with my GitHub user**
 
-> Username: joaaoeu
+> Username: joaovbrandon
 
 > Password: 1234
 
@@ -54,7 +54,7 @@ The page will have 3 main sections:
 - Footer: section with generic information such as copyright, social media icons with the respective link.
 
 #### Details about the Central Section
-- Each animal should be represented in the component 'card' that was done on the [previous exercise](https://github.com/joaaoeu/dengun-frontend-exercise-level1) if needed it can suffer some adaptations.
+- Each animal should be represented in the component 'card' that was done on the [previous exercise](https://github.com/joaovbrandon/dengun-frontend-exercise-level1) if needed it can suffer some adaptations.
 - Only 6 cards should be shown at each time, with 3 cards per line. In smaller dimensions such as <=768px it should show one card per line.
 -  Filters and order fields should be in a panel above the cards. Each field should have a proper label and they must include:
   -  Filter by region.
